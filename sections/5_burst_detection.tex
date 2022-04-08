@@ -136,3 +136,36 @@ by the algorithm are:
     \item Keep looking for spikes before and after the burst core satisfying the
     new threshold condition.
 \end{enumerate}
+
+\paragraph{Cocatre-Zilgien and Delcomyn (CZ)} It represents the first method based on the
+analysis of the ISI histogram, as it is highly informative about the spiking pattern of
+a specific recording channel, as shown in the picture below. In paritcular, bursting
+activity tends to result in valleys, due to the fact that two main inter spike intervals
+exist, the intra-burst one and the inter-bursts one.
+\begin{figure}[H]
+    \includegraphics[scale=0.32]{5_3}
+    \centering
+\end{figure}
+
+\paragraph{Selinger (SE)} This method exploits the ISI histogram (in a logarithmic scale)
+to derive the optimal ISI threshold, then it works as a standard single threshold algorithm.
+This technique tries to improve the identification of the spikes in the tail portion of a
+burst.
+\begin{figure}[H]
+    \includegraphics[scale=0.5]{5_4}
+    \centering
+\end{figure}
+
+\paragraph{Modified Selinger (SE-MOD)} Here it is presented a modified version of the
+previously explained Selinger method, consisting in a mix of the already presented
+techniques. It allows a better identification of the spikes at the boundaries of a
+burst event.
+\begin{figure}[H]
+    \includegraphics[scale=0.42]{5_5}
+    \centering
+\end{figure}
+
+Generally, it can be stated that all the implemented burst detection techniques proposed so
+far presents pros and cons, thus there is not an algorithm clairly prevailing on the others.
+Moreover, different techniques might perform better in different situations, according to
+the type of data that are intended to be analyzed.
