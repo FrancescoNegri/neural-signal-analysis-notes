@@ -1,0 +1,33 @@
+\subsection{Introduction}
+The burst analysis procedures generate a series of parameters representative for
+each burst. The most commonly employed parameters are listed in the following:
+\begin{itemize}
+    \item Percentage of bursting channels
+    \item Total number of bursts
+    \item Mean bursting rate (\(MBR\), expressed in \(bursts/min\))
+    \item Burst duration
+    \item Inter burst interval (\(IBI\)) - it can be either start-to-start (not
+    influenced by burst duration) or end-to-start
+    \item Total number of spikes in a bursting channel
+    \item Percentage of random spikes
+    \item Mean intra-burst frequency
+    \item Peak intra-burst frequency
+\end{itemize}
+Notice that sometimes it might be useful also to evaluate the out-burst spikes.
+
+\subsection{Data visualization tools}
+In the following there is a detailed description of the main tools to characterize and
+visualize bursting activity.
+
+\subsubsection{Inter Burst Interval}
+The inter burst interval (\(IBI\)) represents the burst equivalent of \(ISI\) for
+the spikes. Also in the case of \(IBI\) it is possible to plot an histogram,
+denominated \(IBIH\). Burst are defined as macro events with a specific duration,
+however it becomes less and less relevant as the recording period is increased.
+Thus, under the hypothesis of long term recordings (in the order of tens of minutes)
+it is possible to consider burst events as single-point events, exactly as it is done
+for spikes. The mathematical formulation of the inter burst interval is given below:
+\begin{align*}
+    IBIH(\tau)=\frac{1}{M-1}\sum_{b=1}^{M-1}\delta(t_{b+1}-t_{b}-\tau)
+\end{align*}
+with \(M\) being the total number of burst events.
