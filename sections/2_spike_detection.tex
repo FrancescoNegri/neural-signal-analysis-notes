@@ -3,26 +3,26 @@ Neural signals are firstly recorded as raw data. They exhibit two
 main components:
 \begin{itemize}
     \item Local field potentials (LFPs) exist at low frequencies (0.1-300 Hz).
-    \begin{figure}[H]
-        \includegraphics[scale=0.45]{2_1}
-        \centering
-    \end{figure}
+          \begin{figure}[H]
+              \includegraphics[scale=0.45]{2_1}
+              \centering
+          \end{figure}
     \item Spikes (MUA) exist at higher frequencies (300-3000 Hz).
-    \begin{figure}[H]
-        \includegraphics[scale=0.45]{2_2}
-        \centering
-    \end{figure}
+          \begin{figure}[H]
+              \includegraphics[scale=0.45]{2_2}
+              \centering
+          \end{figure}
 \end{itemize}
 The signal is obtained through extracellular recordings,
 then amplified and filtered. There are 3 possible situations, according to the
 distance of the electrode tip from the neurons:
 \begin{itemize}
     \item \(<50\,\mu{m}\): the SNR is good enough to distinguish the activity
-    of a single neuron (single unit).
+          of a single neuron (single unit).
     \item \(50\sim150\,\mu{m}\): spikes are still detected, but the difference in
-    their shape is masked by the noise (multi-unit activity or MUA).
+          their shape is masked by the noise (multi-unit activity or MUA).
     \item \(>150\,\mu{m}\): spikes cannot be detected and they contribute to
-    the noise.
+          the noise.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[scale=0.35]{2_3}
@@ -32,10 +32,10 @@ distance of the electrode tip from the neurons:
 When recording data from 1 electrode, there are two patterns of activity:
 \begin{itemize}
     \item Spike: single over-threshold signal representing the electrical
-    activity of one or more neurons.
+          activity of one or more neurons.
     \item Burst: sequence of highly packed spikes often occurring simultaneously
-    on several channels and giving rise to a phenomenon known as
-    'network burst'.
+          on several channels and giving rise to a phenomenon known as
+          'network burst'.
 \end{itemize}
 In the following it is show the Data Preprocessing workflow:
 \begin{figure}[H]
@@ -47,7 +47,7 @@ any regard of time. Spike trains are mathematically defined as follow:
 \begin{itemize}
     \item Single channel spike train: \(ST(t)=\sum_{s=1}^{N}\delta{(t-t_s)}\)
     \item Multiple channel spike train: \(ST_j(t)=\sum_{s=1}^{N_j}\delta{t-t_s}\)
-    with \(j=1,...,M\)
+          with \(j=1,...,M\)
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[scale=0.45]{2_5}
@@ -70,11 +70,11 @@ Therefore, several algorithms (each one with pros and cons) have been developed.
 These spike detection algorithms can be divided into 3 families:
 \begin{itemize}
     \item Thresholding: it is assumed that spikes peak-to-peak amplitude is larger
-    than the noise level.
+          than the noise level.
     \item Energy operator: non-linear energy operator accentuating high frequency
-    contet, i.e. spikes.
+          contet, i.e. spikes.
     \item Template matching: it is an approach based on the spike shape,
-    involving Spike Sorting.
+          involving Spike Sorting.
 \end{itemize}
 \subsubsection{Thresholding algorithms}
 \paragraph{Simple Hard Threshold}
@@ -95,11 +95,11 @@ more than one spike is captured in the window.\\
 The threshold (\(Thr\)) is defined in several ways:
 \begin{itemize}
     \item \(Thr=n\sigma[V]\): \(n\) times the standard deviation (SD) of
-    the noise.
+          the noise.
     \item \(Thr=aP2P[V]\): fraction of the full amplitude (peak-to-peak) of
-    the signal.
+          the signal.
     \item \(Thr=n\sigma_N[V]\): \(n\) times the SD estimated from the Median
-    Absolute Deviation (\(MAD\)), with \(MAD=median(|x-median(x)|)\).
+          Absolute Deviation (\(MAD\)), with \(MAD=median(|x-median(x)|)\).
 \end{itemize}
 \paragraph{Hard Threshold Local Maxima}
 This method is very similar to the previous ones, but the spike position is
@@ -133,7 +133,7 @@ The NEO is defined such that:
 \begin{itemize}
     \item Constant voltage or zero \(\Rightarrow NE=0\)
     \item Waveform rapidly varying and a large amplitude
-    \(\Rightarrow NE \text{ is maximum}\).
+          \(\Rightarrow NE \text{ is maximum}\).
 \end{itemize}
 The \(NE\) of a signal \(x(n)\) is defined as:
 \begin{align*}
@@ -157,39 +157,39 @@ which is known to be true, opposed to information provided by inference.
 There are 3 main types of groundtruths:
 \begin{itemize}
     \item Experimental groundtruth: neurons are recorded into two distinct ways,
-    extracellular and intra-cellular (or juxtacellular), then a researcher uses
-    the precise intra-cellular recordings (exhbiting precise timing and
-    localization) to find the same spikes into the extracellular signal.
+          extracellular and intra-cellular (or juxtacellular), then a researcher uses
+          the precise intra-cellular recordings (exhbiting precise timing and
+          localization) to find the same spikes into the extracellular signal.
     \item Computational groundtruth: data are synthetic and produced by a
-    model reproducing the behaviour of a network of neurons under different
-    conditions. In particular, this method enables the researcher to test the
-    Spike Detection algorithms against dataset with different characteristics,
-    such as different signal-to-noise ratios (SNR).
+          model reproducing the behaviour of a network of neurons under different
+          conditions. In particular, this method enables the researcher to test the
+          Spike Detection algorithms against dataset with different characteristics,
+          such as different signal-to-noise ratios (SNR).
     \item Hybrid groundtruth: natural and synthetic data can be mixed as well. In
-    particular, it is common to exploit manually detected and sorted spikes to be
-    fed into computational models as input.
+          particular, it is common to exploit manually detected and sorted spikes to be
+          fed into computational models as input.
 \end{itemize}
 Several distinct metrics might be taken into account when evaluating the
 performance of Spike Detection algorithm, in particular the most used ones are:
 \begin{itemize}
     \item Error count:
-    \begin{itemize}
-        \item Type I error \(\Rightarrow\) False Positive (FP): incorrect
-        inclusion of noise, or spikes or other cells.
-        \item Type II error \(\Rightarrow\) False Negative (FN): omission of
-        true spikes.
-    \end{itemize}
+          \begin{itemize}
+              \item Type I error \(\Rightarrow\) False Positive (FP): incorrect
+                    inclusion of noise, or spikes or other cells.
+              \item Type II error \(\Rightarrow\) False Negative (FN): omission of
+                    true spikes.
+          \end{itemize}
     \item Evaluation of the position of the detected spike (mean error)
     \item ROC curve
 \end{itemize}
 Let's define the following variables:
 \begin{itemize}
     \item \(NREF\): number of reference spikes (true spikes present in
-    the groundtruth dataset)
+          the groundtruth dataset)
     \item \(NDS\): number of detected spikes (spikes identified by the
-    tested Spike Detection algorithm)
+          tested Spike Detection algorithm)
     \item \(NCS\): number of correspondent spikes (spikes correctly
-    identified by the algorithm matching the groundtruth data)
+          identified by the algorithm matching the groundtruth data)
 \end{itemize}
 At this point, the following expressions for False Positives and False Negatives
 can be derived:
@@ -210,12 +210,12 @@ False Negatives.\\
 Let's also list the following metrics:
 \begin{align*}
     \begin{matrix}
-        TP_{rate} && \frac{TP}{P}\\
-        FP_{rate} && \frac{FP}{N}=1-specificity\\
-        Sensitivity && \frac{TP}{TP+FN}=\frac{TP}{P}=TP_{rate}\\
-        Specificity && \frac{TN}{TN+FP}=\frac{TN}{N}\\
-        Accuracy && \frac{TP+TN}{P+N}\\
-        Performance && \frac{TP}{FP+FN}\\
-        Efficiency && \frac{Performance}{Performance+1}
+        TP_{rate}   &  & \frac{TP}{P}                            \\
+        FP_{rate}   &  & \frac{FP}{N}=1-specificity              \\
+        Sensitivity &  & \frac{TP}{TP+FN}=\frac{TP}{P}=TP_{rate} \\
+        Specificity &  & \frac{TN}{TN+FP}=\frac{TN}{N}           \\
+        Accuracy    &  & \frac{TP+TN}{P+N}                       \\
+        Performance &  & \frac{TP}{FP+FN}                        \\
+        Efficiency  &  & \frac{Performance}{Performance+1}
     \end{matrix}
 \end{align*}

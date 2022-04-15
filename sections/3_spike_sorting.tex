@@ -8,25 +8,25 @@ neurons according to the measured spikes associated with it through Spike Sortin
 There are 3 reasons making Spike Sorting useful:
 \begin{itemize}
     \item Increase the scale: as modern devices (MEAs) record from large populations
-    of neurons at the same time, it is desirable to derive the inidividual
-    activity of as many neurons as possible.
+          of neurons at the same time, it is desirable to derive the inidividual
+          activity of as many neurons as possible.
     \item Carry out new types of analysis: it might be interesting to study
-    connectivity patterns of close-by neurons or perform analysis at
-    single-neuron level.
+          connectivity patterns of close-by neurons or perform analysis at
+          single-neuron level.
     \item Have acess to sparsely firing neurons: it is desirable to understand
-    the typical patterns of a specific kind of neuron, allowing to study its
-    specific function.
+          the typical patterns of a specific kind of neuron, allowing to study its
+          specific function.
 \end{itemize}
 Despite everything, Spike Sorting still present a number of major problems:
 \begin{itemize}
     \item Dealing with background noise.
     \item Neurons in the same area might emit spikes with a similar shape (there
-    is no way to perfectly know which neuron fired apart from imaging techniques).
+          is no way to perfectly know which neuron fired apart from imaging techniques).
     \item Neurons in the same area might emit spikes with a smaller amplitude.
     \item Background activity of distant neurons pollute the recorded signal.
     \item Waveform misalignment.
     \item Variation of the spike shape as a function of recent firing history
-    (not time-invariant shape).
+          (not time-invariant shape).
 \end{itemize}
 In the following an image of the whole Data Recording, Spike Detection, and
 Spike Sorting process:
@@ -40,18 +40,18 @@ Spike Sorting process:
 When it comes at Spike Sorting, there are 3 main approaches:
 \begin{itemize}
     \item \textbf{Amplitude discriminator:} separate spikes according to their amplitude.
-    This method does not take into account the shape of a spike, only its
-    amplitude.
+          This method does not take into account the shape of a spike, only its
+          amplitude.
     \item \textbf{Template matching:} select a characteristic spike shape for each cluster
-    and divide the spikes among the clusters via matching with the templates,
-    according to an appropriate distance measure. The main issues of this
-    approach is that the templates might need to adjust during the experiment
-    and that it is necessary a good way to select the templates.
+          and divide the spikes among the clusters via matching with the templates,
+          according to an appropriate distance measure. The main issues of this
+          approach is that the templates might need to adjust during the experiment
+          and that it is necessary a good way to select the templates.
     \item \textbf{Window discriminator:} assign spikes crossing one or more windows
-    to the same neurons. Also in this case issue may arise, especially spike
-    shapes might overlap.
+          to the same neurons. Also in this case issue may arise, especially spike
+          shapes might overlap.
 \end{itemize}
-Please note that these algorithms perform Spike Detection and Spike Sorting at the same time. 
+Please note that these algorithms perform Spike Detection and Spike Sorting at the same time.
 In general, Spike Sorting is carried out by following the steps shown below:
 \begin{figure}[H]
     \includegraphics[scale=0.5]{3_2}
@@ -78,12 +78,12 @@ dimensionality (\(p<m\)).\\
 The \(p\)-dimensional features can be selected in different ways:
 \begin{itemize}
     \item Take basic properties of the spikes (amplitude, width, energy, ...),
-    not optimal in differentiating spikes.
+          not optimal in differentiating spikes.
     \item Select a low number of components from a dimensionality reduction
-    technique, such as PCA. Notice that these components represent the directions
-    of maximum variance of the data, not necessarily the best separation.
+          technique, such as PCA. Notice that these components represent the directions
+          of maximum variance of the data, not necessarily the best separation.
     \item Use wavelets, obtaining a time-frequency decomposition of the signal
-    with optimal resolution in both time and frequency domains.
+          with optimal resolution in both time and frequency domains.
 \end{itemize}
 \paragraph{Principal Component Analysis (PCA)}
 It is an unsupervised dimensionality reduction technique, which can be used
@@ -111,7 +111,7 @@ The wavelet method coefficients are then selected such that they allow to
 distinguish well the spike shapes, in particular multi-modal distributions
 are preferred and unimodal distributions are to be avoided.
 \subsubsection{Clustering}
-The final step of spike sorting is to group spikes with similar features into 
+The final step of spike sorting is to group spikes with similar features into
 clusters, corresponding to different neurons. Different approaches are available:
 \begin{itemize}
     \item Manual clustering
@@ -132,8 +132,8 @@ interaction strength between two points \(x_i\) and \(x_j\):
     J_{ij}=
     \begin{cases}
         \begin{matrix}
-            \frac{1}{K}\exp{\biggl(-\frac{\|x_i-x_j\|^2}{2a^2}\biggr)} && \text{if}\,x_i\,\text{is a nearest neighbor of}\,x_j \\
-            0 && \text{else}
+            \frac{1}{K}\exp{\biggl(-\frac{\|x_i-x_j\|^2}{2a^2}\biggr)} &  & \text{if}\,x_i\,\text{is a nearest neighbor of}\,x_j \\
+            0                                                          &  & \text{else}
         \end{matrix}
     \end{cases}
 \end{align*}
@@ -153,15 +153,15 @@ forming clusters of spikes with similar shape.\\
 In particular
 \begin{itemize}
     \item High temperatures correspond to a low probability of
-    changing the state \(\Rightarrow\) states change randomly, thus no clusters
-    are formed (paramagnetic phase).
+          changing the state \(\Rightarrow\) states change randomly, thus no clusters
+          are formed (paramagnetic phase).
     \item Low temperatures correspond to a high probability of changing to the
-    same state, regardless of the interaction strength \(J_{ij}\)
-    \(\Rightarrow\) all states are changed to the same, thus all spikes belong
-    to the same cluster (ferromagnetic phase).
+          same state, regardless of the interaction strength \(J_{ij}\)
+          \(\Rightarrow\) all states are changed to the same, thus all spikes belong
+          to the same cluster (ferromagnetic phase).
     \item Medium temperatures correspond to a phase in which only similar spikes
-    will change their state together, forming meaningful clusters
-    (Superparamagnetic phase).
+          will change their state together, forming meaningful clusters
+          (Superparamagnetic phase).
 \end{itemize}
 
 
@@ -172,16 +172,16 @@ Spike Sorting.
 The main issues when it comes to Spike Sorting are listed below:
 \begin{itemize}
     \item \textbf{Electrode Drift:} waveforms of a given neuron vary over
-    time and may be assigned to multiple clusters.
+          time and may be assigned to multiple clusters.
     \item \textbf{Tetrodes:} tetrode recordings can be exploited to improve
-    spike sorting results, since they allow the visualization of single
-    neurons from different positions.
+          spike sorting results, since they allow the visualization of single
+          neurons from different positions.
     \item \textbf{Overlapping Spikes:} this phenomenon can be observed when
-    two close-by neurons fire in synchrony or with a small delay. Still 
-    an open issue in Spike Sorting.
+          two close-by neurons fire in synchrony or with a small delay. Still
+          an open issue in Spike Sorting.
     \item \textbf{Bursting Cells:} a burst is the firing of a fast sequence
-    of spikes by a neuron. Successive spikes in a burst may have decreasing
-    amplitude and may be mistakenly considered as separate clusters.
+          of spikes by a neuron. Successive spikes in a burst may have decreasing
+          amplitude and may be mistakenly considered as separate clusters.
 \end{itemize}
 \subsubsection{KiloSort}
 The aim is to develop a fully automated, scalable, and accurate spike sorter,

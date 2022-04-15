@@ -3,9 +3,9 @@ As already stated in the previous chapters, it is well-known that in general the
 signal (acquired from a single electrode) is characterized by 2 distinct patterns:
 \begin{itemize}
     \item \textbf{Spike:} a single over-threshold signal representing the activity of one or
-    more neurons (typically a so-called unit or channel).
+          more neurons (typically a so-called unit or channel).
     \item \textbf{Burst:} a sequence of highly packed spikes often occurring simultaneously on
-    several channels and giving rise to a phenomenon known as network burst.
+          several channels and giving rise to a phenomenon known as network burst.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[scale=0.4]{4_1}
@@ -58,7 +58,7 @@ counting the number of spikes \(N_{ab}\) occurring in each bin.
 Then, an histogram showing the Spike Count can be plotted.
 \paragraph{Instantaneous Firing Rate}
 By simply taking the Spike Count and dividing it by the bin size, the Instantaneous Firing Rate (IFR)
-can be derived. 
+can be derived.
 \begin{align*}
     IFR=r(t)=\frac{N_{ab}(t)}{\Delta{t}}
 \end{align*}
@@ -173,11 +173,11 @@ Let's call \(P\{n\,\text{spikes in}\,T\}=P_T[n]\) the probability of finding \(n
 spikes in the observation period \(T\). It is the product of three distinct factors:
 \begin{itemize}
     \item \(P\{\text{Generating}\,n\,\text{spikes within}\,n\,\text{bins}\}
-    =\bigl(r\cdot{\Delta{t}}\bigr)^n\)
+          =\bigl(r\cdot{\Delta{t}}\bigr)^n\)
     \item \(P\{\text{Not generating any spike in the remaining bins}\}
-    =\bigl(1-r\cdot{\Delta{t}}\bigr)^{M-n}\)
+          =\bigl(1-r\cdot{\Delta{t}}\bigr)^{M-n}\)
     \item The number of combinations to put \(n\) spikes in \(M\) bins
-    \(\Rightarrow\binom{M}{n}=\frac{M!}{(M-n)!\cdot{n!}}\)
+          \(\Rightarrow\binom{M}{n}=\frac{M!}{(M-n)!\cdot{n!}}\)
 \end{itemize}
 Finally, the Poisson model can be written as follow, by recalling the binomial formula:
 \begin{align*}
@@ -186,8 +186,8 @@ Finally, the Poisson model can be written as follow, by recalling the binomial f
 At this point, let's compute the product and try to rearrange it:
 \begin{align*}
     P_T[n]=P\{n\,\text{spikes in}\,T\}
-    &=\lim_{\Delta{t}\to{0}}\binom{M}{n}\cdot{p^n}\cdot{q^{M-n}}\\
-    &=\lim_{\Delta{t}\to{0}}\frac{M!}{(M-n)!\cdot{n!}}\cdot{\bigl(r\cdot{\Delta{t}}\bigr)^n}\cdot{\bigl(1-r\cdot{\Delta{t}}\bigr)^{M-n}}
+     & =\lim_{\Delta{t}\to{0}}\binom{M}{n}\cdot{p^n}\cdot{q^{M-n}}                                                                         \\
+     & =\lim_{\Delta{t}\to{0}}\frac{M!}{(M-n)!\cdot{n!}}\cdot{\bigl(r\cdot{\Delta{t}}\bigr)^n}\cdot{\bigl(1-r\cdot{\Delta{t}}\bigr)^{M-n}}
 \end{align*}
 Let's set \(\epsilon=-r\cdot{\Delta{t}}\Rightarrow \Delta{t}=-\frac{\epsilon}{r}\)
 and \(M=\frac{T}{\Delta{t}}=\frac{T}{-\frac{\epsilon}{r}}=-\frac{r\cdot{T}}{\epsilon}\).
@@ -196,9 +196,9 @@ thus \(\bigl(M-n\bigr)\sim{M}=\frac{T}{\Delta{t}}\), leading to:
 \begin{align*}
     \lim_{\Delta{t}\to{0}}\bigl(1-r\cdot{\Delta{t}}\bigr)^{M-n}
     \sim\lim_{\Delta{t}\to{0}}\bigl(1-r\cdot{\Delta{t}}\bigr)^M
-    &=\lim_{\epsilon\to{0}}\bigl(1+\epsilon\bigr)^M
-    =\lim_{\epsilon\to{0}}\bigl(1+\epsilon\bigr)^{-\frac{r\cdot{T}}{\epsilon}}\\
-    &=\lim_{\epsilon\to{0}}\biggl[\bigl(1+\epsilon\bigr)^{\frac{1}{\epsilon}}\biggr]^{-r\cdot{T}}
+     & =\lim_{\epsilon\to{0}}\bigl(1+\epsilon\bigr)^M
+    =\lim_{\epsilon\to{0}}\bigl(1+\epsilon\bigr)^{-\frac{r\cdot{T}}{\epsilon}}                      \\
+     & =\lim_{\epsilon\to{0}}\biggl[\bigl(1+\epsilon\bigr)^{\frac{1}{\epsilon}}\biggr]^{-r\cdot{T}}
     =e^{-r\cdot{T}}
 \end{align*}
 Let's now consider the binomial coefficient part:
@@ -211,10 +211,10 @@ Let's now consider the binomial coefficient part:
 Therefore:
 \begin{align*}
     P_T[n]
-    &=\lim_{\Delta{t}\to{0}}\frac{M!}{(M-n)!\cdot{n!}}\cdot{\bigl(r\cdot{\Delta{t}}\bigr)^n}\cdot{\bigl(1-r\cdot{\Delta{t}}\bigr)^{M-n}}\\
-    &=\frac{T^n}{\Delta{t}^n\cdot{n!}}\cdot{\bigl(r\cdot{\Delta{t}}\bigr)^n}\cdot{e^{-r\cdot{T}}}\\
-    &=\frac{T^n}{\cancel{\Delta{t}^n}\cdot{n!}}\cdot{r^n\cdot{\cancel{\Delta{t}^n}}}\cdot{e^{-r\cdot{T}}}\\
-    &=\frac{\bigl(rT\bigr)^n}{n!}\cdot{e^{-rT}}
+     & =\lim_{\Delta{t}\to{0}}\frac{M!}{(M-n)!\cdot{n!}}\cdot{\bigl(r\cdot{\Delta{t}}\bigr)^n}\cdot{\bigl(1-r\cdot{\Delta{t}}\bigr)^{M-n}} \\
+     & =\frac{T^n}{\Delta{t}^n\cdot{n!}}\cdot{\bigl(r\cdot{\Delta{t}}\bigr)^n}\cdot{e^{-r\cdot{T}}}                                        \\
+     & =\frac{T^n}{\cancel{\Delta{t}^n}\cdot{n!}}\cdot{r^n\cdot{\cancel{\Delta{t}^n}}}\cdot{e^{-r\cdot{T}}}                                \\
+     & =\frac{\bigl(rT\bigr)^n}{n!}\cdot{e^{-rT}}
 \end{align*}
 Let's now consider two subsequent time instants \(t_0\) and \(t_0+\tau\), then compute
 the following probabilities:

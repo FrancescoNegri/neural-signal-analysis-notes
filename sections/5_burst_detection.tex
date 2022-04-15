@@ -3,9 +3,9 @@ The electrophysiological signal (acquired from a single electrode) is generally
 characterized by two distinct patterns:
 \begin{itemize}
     \item \textbf{Spike:} a single over-threshold signal representing the
-    electrical activity of a source.
+          electrical activity of a source.
     \item \textbf{Burst:} a sequence of highly packed spikes, often occurring on
-    multiple channels at the same time (network burst).
+          multiple channels at the same time (network burst).
 \end{itemize}
 Bursting can be defined as a dynamic state with neurons firing discrete groups of
 spikes in a repeated manner. A burst is generally followed by a period of quiescence
@@ -22,33 +22,33 @@ it is common to observe autonomous bursting activity, especially in the followin
 types of neurons:
 \begin{itemize}
     \item \textbf{IB:} intrinsically bursting neurons, mostly pyramidal neurons in
-    layer 5.
+          layer 5.
     \item \textbf{CH:} chattering neurons, pyramidal neurons in layers 2, 3, and 4.
     \item \textbf{Interneurons:} present in the cortex.
     \item \textbf{LTB:} low-threshold bursters, they fire high-frequency bursts in
-    response to injected pulses of current. Localized in the hippocampus.
+          response to injected pulses of current. Localized in the hippocampus.
     \item \textbf{HTB:} high-threshold bursters fire bursts only in response to
-    strong long pulses of current. Localized in the hippocampus.
+          strong long pulses of current. Localized in the hippocampus.
 \end{itemize}
 \paragraph{Why do bursts naturally occur?}
 There are several hypoteses aiming to explain the importance of bursting activity in
 neural computation.
 \begin{itemize}
     \item \textbf{Bursts are more reliable than single spikes} in evoking responses in
-    postsynaptic cells.
+          postsynaptic cells.
     \item \textbf{Bursts overcome synaptic transmission failure}, it has been shown
-    that a synaptic release is more likely to occur in response to a bombardment
-    of spikes (instead of a single spike).
+          that a synaptic release is more likely to occur in response to a bombardment
+          of spikes (instead of a single spike).
     \item \textbf{Bursts evoke long-term potentiation}, thus affecting synaptic
-    plasticity in a much greater way than single spikes.
+          plasticity in a much greater way than single spikes.
     \item \textbf{Bursts have a higher signal-to-noise ratio} than single spikes, as
-    the generation of bursts requires a higher threshold.
+          the generation of bursts requires a higher threshold.
     \item \textbf{Bursts encode different features} of sensory input than single
-    spikes.
+          spikes.
     \item \textbf{Bursts have more informational content} than single spikes, in
-    particular when analyzed as unitary events. This information might be encoded
-    into the burst duration or in the precise temporal structure of inter spike
-    intervals within a burst. 
+          particular when analyzed as unitary events. This information might be encoded
+          into the burst duration or in the precise temporal structure of inter spike
+          intervals within a burst.
 \end{itemize}
 To summarize, it is important to point out that bursts are all-or-none events,
 whereas single spikes may be noise.\\
@@ -127,14 +127,14 @@ a system considering two distinct ISI thresholds is employed. The steps carried 
 by the algorithm are:
 \begin{enumerate}
     \item Set the mean firing rate \(f\), if the signal is multi-channel compute \(f_j\)
-    for the \(j\)-th channel.
+          for the \(j\)-th channel.
     \item Define a maximum core ISI, often defined as \(th_{core}=\frac{1}{4f}\)
-    or \(th_{core}=100\,ms\).
+          or \(th_{core}=100\,ms\).
     \item Look for sequences having at least a minimum number of intra-burst spikes.
     \item Change the maximum ISI threshold to \(th_{tail}=\frac{1}{3f}\) or
-    \(th_{tail}=200\,ms\).
+          \(th_{tail}=200\,ms\).
     \item Keep looking for spikes before and after the burst core satisfying the
-    new threshold condition.
+          new threshold condition.
 \end{enumerate}
 
 \paragraph{Cocatre-Zilgien and Delcomyn (CZ)} It represents the first method based on the

@@ -35,27 +35,27 @@ In mammals and birds, sleeping activity is divided into pretty much different
 phases, according to the characteristics exhibited by the brain activity.
 \begin{itemize}
     \item \textbf{Rapid Eye Movement (REM):} this phase is also known as paradoxical
-    sleep and its greatest peculiarities are the fact that eyes are rapidly moving
-    and a rapid low-voltage EEG, akng to the awake state.
+          sleep and its greatest peculiarities are the fact that eyes are rapidly moving
+          and a rapid low-voltage EEG, akng to the awake state.
     \item \textbf{Non-Rapid Eye Movement (NREM):} this broad category keeps together
-    all the phases where the neuronal activity is considerably different w.r.t. the
-    awake state. NREM stages can be individuated according to the acivity differences:
-    \begin{itemize}
-        \item \textbf{N1:} it refers to the transition of the brain from alpha waves
-        (awake state) towards theta waves, having a lower frequency. This stage is
-        often called drowsy sleep.
-        \item \textbf{N2:} it is characterized by a phenomenon denominated sleep
-        spindles - i.e. bursts of activity - displaying a pretty higher frequency range
-        (\(11-16\,Hz\)). Another typical phenomenon occurring in this stage is named
-        K-complexes.
-        \item \textbf{N3:} this stage is commonly denominated deep sleep and it is
-        characterized by the presence of delta waves (at least \(20\%\) of the
-        overall activity). Notice that delta waves exhibit especially high
-        peak-to-peak voltages (\(>75\,\mu{V}\)).
-        \item \textbf{N4:} this stage is usually described as a state in which slow
-        delta waves overcomes the \(50\%\) threshold on the total brain oscillatory
-        activity. It is sometimes considered together with stage N3.
-    \end{itemize}
+          all the phases where the neuronal activity is considerably different w.r.t. the
+          awake state. NREM stages can be individuated according to the acivity differences:
+          \begin{itemize}
+              \item \textbf{N1:} it refers to the transition of the brain from alpha waves
+                    (awake state) towards theta waves, having a lower frequency. This stage is
+                    often called drowsy sleep.
+              \item \textbf{N2:} it is characterized by a phenomenon denominated sleep
+                    spindles - i.e. bursts of activity - displaying a pretty higher frequency range
+                    (\(11-16\,Hz\)). Another typical phenomenon occurring in this stage is named
+                    K-complexes.
+              \item \textbf{N3:} this stage is commonly denominated deep sleep and it is
+                    characterized by the presence of delta waves (at least \(20\%\) of the
+                    overall activity). Notice that delta waves exhibit especially high
+                    peak-to-peak voltages (\(>75\,\mu{V}\)).
+              \item \textbf{N4:} this stage is usually described as a state in which slow
+                    delta waves overcomes the \(50\%\) threshold on the total brain oscillatory
+                    activity. It is sometimes considered together with stage N3.
+          \end{itemize}
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[scale=0.52]{7_2}
@@ -87,16 +87,16 @@ define a center-of-mass-based time center of the network burst.
 The figure above shows the following plots:
 \begin{itemize}
     \item \textbf{(A)} The time points of spikes at the different recording sites of
-    a multi-electrode array. The lowest trace shows the total spike train for all
-    the sites.
+          a multi-electrode array. The lowest trace shows the total spike train for all
+          the sites.
     \item \textbf{(B)} A total network firing rate plot with time bins of \(1\,s\).
     \item \textbf{(C)} A total network firing rate plot with time bins of \(25\,ms\).
     \item \textbf{(D)} A plot of the number of active sites with time bins
-    of \(25\,ms\).
+          of \(25\,ms\).
     \item \textbf{(E)} A plot of the product of total number of spikes and the
-    number of active sites, calculated per \(25\,ms\) time bins. The dashed line
-    represents a threshold to overcome to identify an actual network burst, which
-    are individuated by a star.
+          number of active sites, calculated per \(25\,ms\) time bins. The dashed line
+          represents a threshold to overcome to identify an actual network burst, which
+          are individuated by a star.
 \end{itemize}
 \subsubsection{The LogISI method}
 This technique requires instead that burst detection has been performed for every
@@ -129,16 +129,16 @@ index. The computation steps are reported here:
     \item Divide a 5 minutes recording into 300 time bins (each 1 second long).
     \item Count the total number of spikes for each bin, across all the recording sites.
     \item Compute the fraction of the total number of spikes contained in the \(15\%\),
-    of bins with the largest counts, indicated as \(f_{15}\).
-    \begin{itemize}
-        \item If the firing rate is tonic, then \(f_{15}\) is expected to be close to 0.15.
-        \item If a recording is bursty, it is likely that most of the spikes will
-        be contained in bursts, resulting in \(f_{15}\) close to 1.
-    \end{itemize}
+          of bins with the largest counts, indicated as \(f_{15}\).
+          \begin{itemize}
+              \item If the firing rate is tonic, then \(f_{15}\) is expected to be close to 0.15.
+              \item If a recording is bursty, it is likely that most of the spikes will
+                    be contained in bursts, resulting in \(f_{15}\) close to 1.
+          \end{itemize}
     \item Compute the burstiness index normalized between 0 and 1 as
-    \begin{align*}
-        BI = \frac{f_{15}-0.15}{0.85}
-    \end{align*}
+          \begin{align*}
+              BI = \frac{f_{15}-0.15}{0.85}
+          \end{align*}
 \end{enumerate}
 
 \subsection{Major Burst Leaders}
