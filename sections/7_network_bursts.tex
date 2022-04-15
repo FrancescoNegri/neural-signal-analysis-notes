@@ -140,3 +140,45 @@ index. The computation steps are reported here:
         BI = \frac{f_{15}-0.15}{0.85}
     \end{align*}
 \end{enumerate}
+
+\subsection{Major Burst Leaders}
+Each network burst is spreaded through the recording sites according to a specific
+spatio-temporal pattern, resulting in a precise sequence in the electrodes activation.
+Major Burst Leaders (MBLs) are the priviliged nodes in the network that consistently
+fire earlier than the others at the onset of the netowrk bursts. It is critical to
+individuate them, as they play the role of leaders of the synchronized bursting
+activity. It is important to point out that the pool of MBLs is stable across hours,
+although the leadership frequency of individual channels may vary. A further comment
+is that MBLs are not unique, while the Burst Leader (BL) consists in the node
+- i.e. the neuron - initiating the network burst and it is unique, even if it may
+change in time, as it is one of the MBLs, but not always the same.
+\begin{figure}[H]
+    \includegraphics[scale=0.7]{7_5}
+    \centering
+\end{figure}
+Each node is given a certain leadership score, as shown in the figure above, according
+to its relevance in the initiation of a bursting event. If such score overcomes a
+certain threshold (indicated by the dotted line), then the node is identified as
+one of the MBLs.\\
+Another crucial phenomenon is the recruitment of MBLs, as a matter of fact MBLs
+promptly recruit other MBLs in the network burst pathway. By recruitment it is meant
+to activate other nodes in order to facilitate the initiation of a network burst.
+In addition, MBLs are involved in network bursting activity with high reliability
+if compared to other common nodes, exhibiting a reliability \(>90\%\).
+\begin{figure}[H]
+    \includegraphics[scale=0.7]{7_6}
+    \centering
+\end{figure}
+At this point, one might wonder if MBLs represent the most active channels in terms
+of spikes. Although no correlation between the leadership score and the fraction of
+spikes outside network bursts have been assessed, it has been observed that almost
+all MBLs have a sustained spiking activity, with an average firing rate higher than
+the network average. Moreover, it seems that their response to electrical stimulation
+is indeed stronger and faster than those of common neurons.
+\begin{figure}[H]
+    \includegraphics[scale=0.7]{7_7}
+    \centering
+\end{figure}
+A possible interpretation of this phenomenon could be that MBLs receieve a large number
+of incoming excitatory connections, therefore they act as network hubs, integrating
+several inputs and redistributing them to the network.
