@@ -58,3 +58,76 @@ according to the physical layout of the electrodes, and the MBLs are highlighted
     \includegraphics[scale=0.6]{8_4}
     \centering
 \end{figure}
+
+\subsection{Cross-Correlation}
+The cross-correlation between spike trains is a fundamental metric, as it is capable
+to highlight synchronization phenomena at the network level. Notice that this metric
+can alternatively be computed starting from the spike trains or the burst trains.
+A train is defined as the reference train, identified by \(x\), while the other
+one is employed as the target train, denoted by \(y\).\\
+The two trains are divided into equally spaced bins small enough to contain at most
+one spike, then a cross-correlogram - i.e. a cross-correlation histogram - is derived
+by counting the number of bins displaying a spike in both the reference and the target
+trains. A time delay \(\tau\) is applied as a variable shift between the two trains.
+Notice that by switching the reverse and the target trains, the same plot is obtained,
+but reversed in the horizontal time axis.
+\begin{figure}[H]
+    \includegraphics[scale=0.9]{8_5}
+    \centering
+\end{figure}
+From a mathematical point of view, the cross-correlation \(C_{xy}\) can be formalized
+as follow:
+\begin{align*}
+    C_{xy}(\tau)
+    =\sum_{s=1}^{N_x}\sum_{t_{i}=(\tau-\Delta{\tau}/2)}^{(\tau+\Delta{\tau}/2)}x(t_s)y(t_s-t_i)
+\end{align*}
+Notice that a normalization term can be easily added in order to provide
+a cross-correlation value in the \([0, 1]\) range:
+\begin{align*}
+    C_{xy}(\tau)
+    =\frac{1}{\sqrt{N_xN_y}}\sum_{s=1}^{N_x}\sum_{t_{i}=(\tau-\Delta{\tau}/2)}^{(\tau+\Delta{\tau}/2)}x(t_s)y(t_s-t_i)
+\end{align*}
+where \(N_x\) is the total number of spikes in the reference train and \(N_y\) is the
+total number of spikes in the target train. The previously described properties of
+\(C_{xy}(\tau)\) can be summarized as follow:
+\begin{itemize}
+    \item \(0\le{C_{xy}(\tau)}\le{1}\)
+    \item \(C_{xy}(\tau)=-C_{yx}(\tau)\)
+\end{itemize}
+Auto-correlation is often used to test the functioning of a cross-correlation
+algorithm:
+\begin{align*}
+    C_{xx}(\tau)
+    &=\frac{1}{\sqrt{N_xN_x}}\sum_{s=1}^{N_x}\sum_{t_{i}=(\tau-\Delta{\tau}/2)}^{(\tau+\Delta{\tau}/2)}x(t_s)x(t_s-t_i) \\
+    &=\frac{1}{N_x}\sum_{s=1}^{N_x}\sum_{t_{i}=(\tau-\Delta{\tau}/2)}^{(\tau+\Delta{\tau}/2)}x(t_s)x(t_s-t_i)
+\end{align*}
+\begin{figure}[H]
+    \includegraphics[scale=0.9]{8_6}
+    \centering
+\end{figure}
+A further mean-correlogram can be computed to assess how one channel is correlated
+to all of the others:
+\begin{align*}
+    C_x(\tau)=\frac{1}{n-1}\sum_{y=1}^{n}C_{xy}(\tau)
+\end{align*}
+It is now possible to define the cross-correlation function in zero \(C(0)\), with
+the bin centered in zero:
+\begin{align*}
+    C(0)=\sum_{\tau=-k(\Delta\tau/2)}^{k(\Delta\tau/2)}C_{xy}(\tau)
+\end{align*}
+with \(\Delta\tau\) being the bin size and \(k\) indicating the considered number of
+bin around the central one, identified as bin zero.
+On the other hand, the \(C_{peak}\) represents the value of the cross-correlogram in
+an area around the maximum detected peak. This is computed in order to quantify the
+correlation level among all the recording channels. The peak latency is the distance
+of the maximum peak from the zero: it can be interpreted as the delay of an
+estimated functional connection.
+\begin{align*}
+    C_{peak}=\sum_{\tau=\tau_{peak}-k(\Delta\tau/2)}^{\tau_{peak}+k(\Delta\tau/2)}C_{xy}(\tau)
+\end{align*}
+Two channels can be considered to be synchronized whenever the central peak is
+centered in zero, implying a very small peak latency.
+\begin{figure}[H]
+    \includegraphics[scale=0.9]{8_7}
+    \centering
+\end{figure}
