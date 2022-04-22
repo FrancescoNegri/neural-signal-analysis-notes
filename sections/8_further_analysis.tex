@@ -121,7 +121,8 @@ On the other hand, the \(C_{peak}\) represents the value of the cross-correlogra
 an area around the maximum detected peak. This is computed in order to quantify the
 correlation level among all the recording channels. The peak latency is the distance
 of the maximum peak from the zero: it can be interpreted as the delay of an
-estimated functional connection.
+estimated functional connection or alternatively as the directionality of
+the connection between two sources.
 \begin{align*}
     C_{peak}=\sum_{\tau=\tau_{peak}-k(\Delta\tau/2)}^{\tau_{peak}+k(\Delta\tau/2)}C_{xy}(\tau)
 \end{align*}
@@ -193,7 +194,7 @@ for each channel.
 \end{figure}
 \paragraph{Connectivity Map} This method allows to plot a topological mapping of the
 connections between the sources, according to their activity. Each node is drawn,
-according to its position on the MUA. Then, the correlation \(C(0)\) between each pair
+according to its position on the MEA. Then, the correlation \(C(0)\) between each pair
 of the recording channels is computed and a connecting line is added if \(C(0)\)
 overcomes an arbitrary threshold - i.e. \(C(0)>0.2\). In addition, the thickness of
 the line is made proportial to the degree of correlation between the two nodes.
