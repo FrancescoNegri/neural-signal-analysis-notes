@@ -86,9 +86,57 @@ electrical field, as signals cancel out each other.
 \end{figure}
 A further factor affecting the LFP signal is the temporal scaling. A temporal
 superimposition of a large number of activated neurons will increase the LFP
-signal: this phenomenon is known as synchronization. The so-called \textit{Beta rythm}
+signal: this phenomenon is known as synchronization. The so-called \textit{Beta rhythm}
 is a peculiar type of synchronization occurring in reaching and motion tasks, but this
 synchronization is suppressed as soon as the reaching movement is completed. Another
 important feature of temporal scaling is the \(\frac{1}{f^{\alpha}}\) frequency decay:
 the amplitude of the signal exhibits a power law decay towards high frequencies. This
 may be partially explained by the low-pass filtering performed by dendrites.
+
+\subsection{The Forward Problem}
+By assuming a homogeneous and isotropic conductivity, it is possible to easily
+solve the so-called \textit{forward problem} by exploiting the Maxwell's equations.
+The \textit{forward problem} consists to reconstruct the measured eletrical field
+- i.e. the LFP - by knowning the sources which generated it. Unluckily, the
+brain conductivity is neither homogeneous nor isotrpic and this generates several
+problems when studying how the eletrical signal propagates through the nerual tissue,
+this phenomenon is thus denominated volume conduction. Generally, when analyzing a
+neural signal, it is believed that coherent activity reflects functionally relevant
+processing; however, volume conductivity represents a significant issue, as it
+tends to amplify this, leading to an overestimation of the coherent activity
+in brain.\\
+More in detail, the \textit{forward problem} indicates the modelling of the system
+responsible for the generation of a given recorded signal. It is opposed to the
+\textit{inverse problem}, consisting in sources localization. A possible approach
+to the \textit{forward problem} is by exploiting compartimental models, then
+properly tuning the model parameters. Although this approach looks promising,
+it is computationally costly. On the other hand, single-compartment models
+are too simplistic to properly describe the structure of a neuron.\\
+When trying to address the \textit{forward problem} it is important to recall
+that the synaptic connectivity highly affects the LFP. On one side, it
+determines the spike train statistics (the so-called temporal coding), creating
+correlation patterns for the synaptic inputs. On the other side, the spatial
+distribution of synapses highly affects how inputs are translated into LFP.
+To sum up, it is not just a single neuron geometry that determines the LFP
+dynamics, but also the network spatial distribution: at the micro and meso
+scales the structure of the network plays a crucial role in determining
+the function.
+
+\subsection{Functional Decomposition}
+The Local Field Potential, as well as other signals such as EEG and MEG ones,
+is usually decomposed into several frequency bands thanks to filtering.
+These bands are often referred to as Berger bands, even if they are far from
+being accurate between different subjects and even within the same subject in
+different time instants. Usually, three main groups are determing by looking
+at the correlation between two signals as a function of their frequency.
+These three clusters are:
+\begin{itemize}
+    \item Slow rhythms with a high oscillatory activity: \(0\sim{50}\,Hz\)
+    \item Gamma oscillations mediated by rhythmic inhibition: \(<100\,Hz\)
+    \item High gamma activity, reflecting the Multi Unit Activity (MUA) close
+    to the electrode, proportional to the real spiking activity: \(100\sim{150}\,Hz\)
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[scale=0.35]{9_4}
+    \centering
+\end{figure}
