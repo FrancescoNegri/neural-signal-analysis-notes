@@ -1,100 +1,343 @@
-The application of a stimulus to the nervous system leads to changes determined by
-two main properties:
+The application of a stimulus to the nervous system leads to changes 
+determined by two main properties:
 \begin{itemize}
-    \item \textbf{Excitability:} the capability of a nerve cell to react to an
-          incoming impulse.
-    \item \textbf{Plasticity:} certain permanent functional transformations arise in
-          particular systems of neurons as a result of appropriate stimuli or their
-          combination.
+    \item \textbf{Excitability:} the capability of a nerve cell to react 
+to an incoming impulse.
+    \item \textbf{Plasticity:} certain permanent functional 
+transformations arise in systems of neurons as a result of appropriate 
+stimuli or their combination (it describes the possibility of the brain of 
+maintaining a specific response over long time scales).
 \end{itemize}
-The communication between neurons occurs through action potentials, as shown in the
-following picture.
+The communication between neurons occurs through action potentials, as 
+shown in the following picture.
 \begin{figure}[H]
-    \includegraphics[scale=0.35]{1_1}
+    \includegraphics[scale=0.3]{1_1}
     \centering
 \end{figure}
-Measuring, analyzing, and processing brain signals is done for several reasons, but
-the three main ones are listed below:
+Measuring, analyzing, and processing brain signals is done for several 
+reasons, but the three main ones are:
 \begin{itemize}
     \item \textbf{Learn} more about the brain functioning.
-    \item \textbf{Mimic} the brain functions in an artificial way - i.e. neuromorphic
-          engineering.
-    \item \textbf{Employ} brain signals for control and communication, as in the
-          case of prosthetics.
+    \item \textbf{Mimic} the brain functions in an artificial way to 
+create new types of technologies - i.e. neuromorphic engineering.
+    \item \textbf{Employ} brain signals for control and communication, as 
+in the case of prosthetics.
 \end{itemize}
-The nerual code can either be read or written by exploiting several distinct
-techniques exhibiting different levels of:
+This is actually what neuroengineering is about. It can be described as a 
+tale of two loops: from one point of view, we have the development of new 
+technologies from the knowledge of the brain, while from the other one, 
+new technologies can be useful to treat the brain or the nervous system.\\
+
+How do we interact with the brain?
+Reading the neural code can be done through different levels of 
+interaction of interfaces with the brain, and, depending on the level, 
+different signals can be obtained. 
+\begin{itemize}
+    \item EEG level
+    \item Epidural level
+    \item Intracortical level
+    \item Depth level
+\end{itemize}
+The neural code can either be read or written by exploiting several 
+distinct techniques exhibiting different levels of:
 \begin{align*}
     \begin{matrix}
         \textbf{Invasiveness}       &  & \textbf{Risk}                &  &
         \textbf{Spatial resolution} &  & \textbf{Temporal resolution}
     \end{matrix}
 \end{align*}
-The technology nowadays allows fair degrees of spatial and temporal resolution, with
-the main reading techniques being fMRI, PET, optical imaging, EEG, ECoG, MEA,
-single neuron, and others. Notice that also the number of reading sites is constantly increasing, due to the
+The technology nowadays allows fair degrees of spatial and temporal 
+resolution, with
+the main reading techniques being fMRI, PET, optical imaging, EEG, ECoG, 
+MEA, single neuron, and others. Notice that also the number of reading 
+sites is constantly increasing, due to the
 exploitation of multiple electrode devices.
 \begin{figure}[H]
-    \includegraphics[scale=0.375]{1_2}
+    \includegraphics[scale=0.3]{1_2}
     \centering
 \end{figure}
-The multi-scale brain model presented above aims at showing the different levels at
-which the brain activity can be investigated, in terms of spatial, temporal,
-and topological scales.
-Let's stress once more that the brain can be studied at different level of complexity,
-which are somehow related to the risk due to the techniques involved to do so.
+The multi-scale brain model presented above aims at showing the different 
+levels at which the brain activity can be investigated, in terms of 
+spatial, temporal, and topological scales.
+Let's stress once more that the brain can be studied at different level of 
+complexity, which are somehow related to the risk due to the techniques 
+involved to do so.
 \begin{figure}[H]
-    \includegraphics[scale=0.35]{1_3}
+    \includegraphics[scale=0.3]{1_3}
     \centering
 \end{figure}
-Notice that in general the functional unit of the brain is not a single neuron.\\
-Two main classes of techniques exist: the \textit{in vitro} and \textit{in vivo} ones. Generally, the
-second family is more complex to employ, as it requires not to damage the brain of
-the experiment subject. One of the principal technologies to study \textit{in vitro} networks
-is MEAs (Micro Electrode Arrays), which are able to detect the activity
-of the network at several recording sites and for extended time periods. An issue
-related to MEAs is the difficulty often encountered in analysing the recorded data
-and interpretating the results in a meaningful way.\\
-In general, by recording neural signals at high frequencies and close to few
-neurons a signal made of spikes, indicating the firing of a neuron, can be obtained,
-while by recording at higher distances the local field potetial (LFP) is instead
-obtained, consisting in the low frequency component and accounting for several
-neurons as a sort of superposition of their effects.\\
-It is common to find in vitro neural networks since they are extensively employed in
-research due to their fair level of organization and to the capability to easily
-record their activity with arrays of electrodes. Nonetheless, some issues related to
-\textit{in vitro} networks are the fact that they have no fidelity w.r.t. \textit{in vivo} neurons,
-starting from the fact that they generally arranged in 2D layers, instead of
-more complex three-dimensional networks.
-\begin{figure}[H]
-    \includegraphics[scale=0.275]{1_4}
-    \centering
-\end{figure}
-Another crucial concept is the one of brain modularity, as a matter of fact the brain
-is redundant and intrinsically modular, due to the fact that it is composed of
-local networks that are embedded into networks of networks.\\
-Other wideley spread techniques are in vitro brain slices and \textit{in vivo} surgical
-procedure. In both cases data are collected from biological tissue by means of
-MEAs or similar technologies.\\
-The analysis of neural signals is usually performed on spike trains, which are
-derived by filtering the raw signal recorded from electrodes and by detecting the
-spikes present in it. Notice that the crucial point is not the magnitude of a
-certain spike, rather its position on the time axis, indicating when it was fired.
-\begin{figure}[H]
-    \includegraphics[scale=0.5]{1_5}
-    \centering
-\end{figure}
-It is important to point out that the shape of a spike is highly influenced by the
-position of the measuring electrode w.r.t. the neuron that emitted it, enabling
-the researchers to recognize all the spikes emitted by the same source - i.e. a
-particular neuron - and this is called spike sorting.\\
-The main areas of research in this subject are reported in the following list:
+Notice that in general the functional unit of the brain is not a single 
+neuron: it has soon been realized that the neurons, for the complexity of 
+the complete structure, couldn't be studied only in isolation, but should 
+also be analyzed in the different cell assemblies that they form.\\
+There are many ways to study these structures, but in principle we can 
+rely on two approaches: the \textit{in vitro} and \textit{in vivo} ones. 
+Generally, this second family is more complex to employ, as it requires 
+not to damage the brain of
+the experiment subject. 
+
+\subsection{In Vitro Systems}
+One of the principal technologies to study \textit{in vitro} networks is 
+\textbf{MEAs (Micro Electrode Arrays)}, which are able to detect the 
+activity of the network at several recording sites and for extended time 
+periods.\\
+They are composed by a complex integrated microelectrode system (with 
+typically 60 sites), that leads to a multi-site long-term stimulation and 
+recording.
+However, an issue related to MEAs is the difficulty often encountered in 
+analysing the recorded data
+and interpreting the results in a meaningful way.\\
+We can use this device to record multiple types of signals, but the ones 
+in which we are interested are mostly two:
 \begin{itemize}
-    \item Identification and classification of spike events (spike detection and
-          spike sorting).
-    \item Techniques for measuring the association between neural spike trains.
-    \item Quantification of the neural response to a stimulus.
+    \item \textbf{Local field potentials}, that can be recorded by 
+recording the signal far from the neural network. They consist in the low 
+frequency components (200/300 Hz) accounting for several neurons as a sort 
+of superposition of their effects.
+    \item \textbf{Multi-unit activity}, which can be extracted by 
+measuring a signal in the vicinity of a neuron.  In general, a signal made 
+of spikes is obtained by recording neural signals at high frequencies (300 
+Hz-3 kHz), indicating the firing of a neuron. It is mostly related to the 
+activity of one neuron but can also be influenced by the other ones 
+nearby.
 \end{itemize}
-Finally, let's highlight that the high number of electrodes employed in today's
-research implies a number of new challenges concerning data aquisition, storage,
-and analysis.
+
+\textbf{Networks of neurons} represent an intermediate level of 
+organization of the nervous system. 
+In vitro neural networks are quite easy to obtain, and they are important, 
+since they constitute a valuable experimental model for studying the 
+collective electrophysiological and functional properties of the brain. In 
+fact, the fundamental unit of the nervous system is not the single neuron 
+but the \textbf{cell assembly}.\\
+
+Neurons dissociated from the original tissue can be cultured in vitro from 
+days up to months. During the in-vitro development, synapses start to be 
+established and neurons begin to communicate among them, building a 2-D 
+network. Networks freely develop, without barriers, and the basic 
+electrophysiological, biochemical and pharmacological properties are 
+maintained similar to those of in vivo neurons.\\
+These cultures are mostly obtained from animals, even if new technologies 
+are developing.\\
+The processed that is followed is:
+\begin{itemize}
+    \item Pre-culture preparations:
+    
+    \begin{itemize}
+        \item Sterilize the culturing substrate (e.g. set of 
+microelectrodes arrays)
+        \item Pre-treat the insulation layer (silicon nitride) with 
+adhesion factors (Poli-L/D-Lysine and Laminin) in order to improve the 
+coupling between neurons and electrodes.
+    \end{itemize}
+    
+    \item Dissection:
+    
+    \begin{itemize}
+        \item Pregnant rats at the gestation day 18-19 are usually used. 
+        \item The pups are removed and their cortex isolated.
+    \end{itemize}
+    
+    \item Dissociation:
+    
+    \begin{itemize}
+        \item Add trypsin.
+        \item Mechanical dissociation by using a Pasteur pipette and cell 
+count.
+        \item Suspend the cells in neurobasal medium and place them on the 
+pre-treated substrate (final concentration about 50.000 cells/device).
+    \end{itemize}
+    
+    \item Maintenance of the culture:
+    
+    \begin{itemize}
+        \item Place the substrates in a humified incubator containing 0.5 
+CO2 at 37°C
+        \item Replace part of the old media with fresh media (neurobasal 
+medium) each week
+    \end{itemize}
+\end{itemize}
+
+A few hours after dissociation, neuritis start to elongate from the cell 
+body and the first connections are established: neurons begin to 
+communicate, and a new 2-D network is created. There is no fidelity with 
+the in vivo architecture, but some fundamental mechanisms are maintained. 
+The main neurotrasmitters of the CNS (i.e. glutamate and GABA) are 
+expressed after two weeks in culture.\\
+
+In vitro neural networks since they are extensively employed in research 
+due to their fair level of organization and to the capability to easily
+record their activity with arrays of electrodes. Nonetheless, some issues 
+related to
+\textit{in vitro} networks are the fact that they have no fidelity with 
+respect to \textit{in vivo} neurons, starting from the fact that they 
+generally arranged in 2D layers, instead of more complex three-dimensional 
+networks.
+However, new in vitro approaches were recently developed, for example 3D 
+structures like \textbf{brain organoids or spheroids}. This kind of models 
+can be obtained also with human derived stem cells that can be 
+differentiated into neurons. This allows to reduce the involvement of 
+animals and personalize the treatments for each patient.
+\begin{figure}[H]
+    \includegraphics[scale=0.2]{1_4}
+    \centering
+\end{figure}
+There is also another type of approach that we can use for in vitro 
+measurements, which is the one based on \textbf{brain slices}. In this 
+model, brain slices maintain the same architecture of the brain from which 
+they derive. The brain is glued onto the vibratome plate. The cut is 
+performed in a very cold (0-2°C) and oxygenated (0.95 of o2 - 0.05 of CO2) 
+physiological solution. From this method we record mostly field 
+potentials.\\
+
+Another crucial concept is the one of brain modularity, as a matter of 
+fact the brain is redundant and intrinsically modular, due to the fact 
+that it is composed of local networks that are embedded into networks of 
+networks.\\
+
+\subsection{In Vivo Systems}
+This kind of procedure is more complex: people must be trained to perform 
+it, and a specific environment is required. In this case, in fact, a real 
+surgery is realized. 
+Electrodes used are mostly intracortical electrodes. The same experimental 
+set ups used for the in vitro analysis can be also used for the in vivo 
+one.\\
+\textbf{Calcium imaging} is another frequent technique, which finds the 
+variations of calcium in the tissue under the microscope. It can be used 
+also for interconnected cells. 
+
+\subsection{From Raw Data to Point Process}
+The process that we are more interested in performing is the detection of 
+spikes. To do that, there is a specific procedure to follow, which is 
+called \textbf{spike detection}.
+Spike trains are derived by filtering the raw signal recorded from 
+electrodes and by detecting the spikes present in it. Notice that the 
+crucial point is not the magnitude of a certain spike, rather its position 
+on the time axis, indicating when it was fired.
+\begin{figure}[H]
+    \includegraphics[scale=0.375]{1_5}
+    \centering
+\end{figure}
+It is important to point out that the shape of a spike is highly 
+influenced by the position of the measuring electrode w.r.t. the neuron 
+that emitted it, enabling the researchers to recognize all the spikes 
+emitted by the same source - i.e. a
+particular neuron - and this is called spike sorting.\\
+
+
+Simultaneous recording of multiple neurons offers new premises for 
+investigating fundamental questions about brain functions, provided that 
+the challenging problem of analyzing multiple simultaneously recorded 
+spike trains can be properly addressed.
+There are some working assumptions that are usually done when studying 
+spike trains:
+\begin{itemize}
+    \item There is an enormous wealth of information about the structure 
+and function of the nervous system which can be derived from careful study 
+of the detailed timings of spike events. 
+    \item The analysis of these signals can shed light on mechanisms of 
+spike production within the observed cell (on the pre-synaptic input) and 
+the mechanisms by which the spike is transformed into a post-synaptic 
+output.
+    \item Observation of multiple units can reveal details of 
+interconnections and functional interactions.
+    \item Neuronal processes at all levels involve a probabilistic element 
+which must be adequately incorporated. 
+\end{itemize}
+
+This data present new analysis challenges because most standard signal 
+processing techniques are designed primarily for continuous-valued data 
+and not point processes. 
+The main areas of research in this field are:
+\begin{itemize}
+    \item Identification and classification of spike events: spike 
+detection and spike sorting. This latter technique allows us to identify 
+the actual sources that caused the spikes.
+    \item Techniques for measuring the "association" (cross-correlation, 
+synchrony, etc...) between neural spike trains: e.g. cross-correlograms 
+(both in time- and frequency-domain) 
+    \item Quantification of the neural response to a stimulation: e.g. 
+Post-Stimulus Time Histogram (PSTH), Joint- PSTH (JPSTH) 
+\end{itemize}
+
+Finally, let's highlight that the high number of electrodes employed in 
+today's research implies a number of new challenges concerning data 
+aquisition, storage, and analysis.\\
+Since current techniques for spike train analysis are usually designed to 
+analyze - at most - pairs of neurons, the challenge is to design methods 
+that truly allow neuroscientists to perform multivariate analyses of 
+multiple spike train data.
+There are many benefits of developing such methods:
+\begin{itemize}
+    \item Easier quantification of reliability and statistical 
+significance of experimental findings.
+    \item Easier correlation between neural ensemble dynamics and behavior 
+or relevant biological stimuli.
+    \item Possibility to design more complex experimental procedures to 
+investigate more relevant and important questions.
+\end{itemize}
+
+\subsection{Spike Trains}
+A neuronal spike train is the sequence of nerve impulses or action 
+potentials, produced by a neuron, typically observed with either 
+intracellular or extracellular microelectrodes over a relatively long 
+period of time. \\
+Spike train analysis differs from 'classical' electrophysiological methods 
+since the raw data of interest are not precise voltage measurements but 
+rather \textbf{precise measurements of times of occurrence of events}. In 
+fact, because of our 'all-or-one' conception of the nerve pulse, each 
+spike is regarded as indistinguishable from the others produced by the 
+same neuron. Additionally, with each spike can be associated a unique 
+instant of time, e.g. the time of maximum excursion of electrical 
+potential, which can be measured with high degree of precision. \\
+The most important properties of individual spike events are two:
+
+\begin{itemize}
+    \item \textbf{Indistinguishability} (i.e. They are distinguishable 
+only by where they occur in time)
+    \item \textbf{Instantaneity} 
+\end{itemize}
+
+In probability theory and statistics, a time series of discrete events, 
+such as a spike train, is called a \textbf{point process}. More 
+specifically, being the spike train characterized by a certain degree of 
+randomness and variability, we call it a stochastic point process which 
+occurs in one dimension corresponding to the time axis. \\
+Ensembles of spike trains from simultaneously recorded neurons are multi- 
+dimensional point-process time series. These time series are both dynamic 
+and stochastic. 
+
+\begin{itemize}
+    \item Dynamic means that their properties change through time
+    \item Stochastic means that they change in a manner that can often be 
+characterized by a probability model describing the likelihood of spikes 
+at a given time. 
+\end{itemize}
+
+How can we mathematically describe this temporal series (i.e. the spike 
+train)? 
+
+\begin{itemize}
+    \item A spike is an instantaneous event
+    \item A spike is a pulse
+    \item All the spikes have the same shape
+\end{itemize}
+
+Therefore, a single spike can be described in mathematical terms by using 
+the Delta Dirac function:
+
+\begin{equation*}
+    ST(t) = \sum_{s=1}^N\delta(t-t_s)
+\end{equation*}
+
+For a network of M neurons, i.e. for simultaneously recorded spike trains 
+from different neuronal sources, the mathematical description is given by:
+
+\begin{equation*}
+    ST_j(t) = \sum_{s=1}^{N_j}\delta(t-t_s) \hspace{1 cm} j=1, ..., M
+\end{equation*}
+
+ \begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.3]{1_6.png}
+\end{figure}
+\newpage
