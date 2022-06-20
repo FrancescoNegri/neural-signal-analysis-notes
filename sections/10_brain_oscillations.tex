@@ -69,9 +69,33 @@ A single neuron's dipole is too small to be measured as far away as the scalp. H
 in their vicinity, the dipoles from multiple neurons in a region will sum together. The sum of many individual dipoles in an area is
 measurable as a single dipole whose magnitude reflects the number of neurons whose dipoles are summing together. However, because electrodes 
 will measure the sum of both the positive and the negative ends of dipoles in the brain, in order to produce a measurable (nonzero) signal, 
-neurons must be both arranged in a \textit{parallel manner}, and \textit{synchronously active}. The parallel arrangement is necessary to produce a measurable 
+neurons must be both arranged in a \textit{parallel manner}, and \textit{synchronously active}. 
+\begin{figure}[H]
+    \includegraphics[scale=0.45]{10_2}
+    \centering
+\end{figure}
+The parallel arrangement is necessary to produce a measurable 
 dipole because, if the neurons are all arrayed in the same orientation, then their signals can sum to form a larger signal. 
 In any other configuration, the individual dipoles' positive and negative ends will sum and cancel each other out. The synchronization 
 of activity is necessary in order to yield a net charge on the scalp-facing side of the dipole sheet, rather than charges cancelling each other out; 
 and a signal large enough to be measured.
+\par\medskip
+Finally, given the fact that the electrical field moves in space for reaching the sensors (and this phenomenon can be called \textbf{Volume Conduction}),
+the signal reaches at least the outer skull layers. If there is not a layer that facilitates the passage of ions, it is not possible to record anything. 
+At this purpose a conductive gel can be used, in order to allow the passage of ions from the sources up to the sensors.
+\begin{figure}[H]
+    \includegraphics[scale=0.40]{10_3}
+    \centering
+\end{figure}
 
+\subsection{EEG (Simplified) DAQ}
+Which systems are capable of acquiring the data? In the following it is possible to see a simplified model of the EEG acquisition system:
+\begin{itemize}
+    \item The first element is the \textbf{Sensor}, that has some sort of resistance (\(R_1\)), referred to the scalp.
+    \item Then there is a \textbf{Cable}, that is used to connect the sensor to the amplifier. The resistance is \(R_2\)
+    \item The last part is the \textbf{Amplification System}, with its resistance \(R_3\).
+\end{itemize}
+For the reasons seen before, \(R_1\) must be as low as possible to permit the ions to reach the sensors. Also the resistance of the cable 
+(\(R_2\)) needs to be very small, in order not to have any loss of the signal. What can be said about \(R_3\)? 
+It should be very large, compared to \(R_1\) and \(R2\), in particular it must be orders of magnitude larger than the sum of the two: 
+min 30
