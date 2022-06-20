@@ -1,118 +1,87 @@
 \subsection{Introduction}
-Spike Sorting can be defined as the grouping of spikes into clusters
-according to the similarity of their shapes.\\
-This is useful only if the following assumption is made: each neuron tends
-to fire spikes with a peculiar (distinguishable) extracellular shape.
-As a consequence, it is possible to determine the activity of each one of these
-neurons according to the measured spikes associated with it through Spike Sorting.\\
-There are 3 reasons making Spike Sorting useful:
+\textbf{Spike Sorting} can be defined as the grouping of spikes into clusters according to the similarity of their shapes.\\
+It is useful only if the following assumption is made: each neuron tends to fire spikes with a peculiar (distinguishable) extracellular shape.
+As a consequence, it is possible to determine the activity of each one of these neurons according to the measured spikes associated with it through Spike Sorting.\\
+There are 3 main reasons for which Spike Sorting useful:
 \begin{itemize}
-    \item Increase the scale: as modern devices (MEAs) record from large populations
-          of neurons at the same time, it is desirable to derive the inidividual
-          activity of as many neurons as possible.
-    \item Carry out new types of analysis: it might be interesting to study
-          connectivity patterns of close-by neurons or perform analysis at
-          single-neuron level.
-    \item Have acess to sparsely firing neurons: it is desirable to understand
-          the typical patterns of a specific kind of neuron, allowing to study its
-          specific function.
+    \item \textbf{Increase the scale}: as modern devices (MEAs) record from large populations of neurons at the same time, it is desirable to derive the individual activity of as many neurons as possible.
+    \item \textbf{Carry out new types of analysis}: it might be interesting to study connectivity patterns of close-by neurons or perform analysis at single-neuron level.
+    \item \textbf{Have access to sparsely firing neurons}: it is desirable to understand the typical patterns of a specific kind of neuron, allowing to study its specific function.
 \end{itemize}
-Despite everything, Spike Sorting still present a number of major problems:
+Despite everything, Spike Sorting still presents a number of major problems:
 \begin{itemize}
     \item Dealing with background noise.
-    \item Neurons in the same area might emit spikes with a similar shape (there
-          is no way to perfectly know which neuron fired apart from imaging techniques).
+    \item Neurons in the same area might produce spikes with a similar shape (there is no way to perfectly know which neuron fired apart from imaging techniques).
     \item Neurons in the same area might emit spikes with a smaller amplitude.
-    \item Background activity of distant neurons pollute the recorded signal.
+    \item Background activity of distant neurons pollutes the recorded signal.
     \item Waveform misalignment.
-    \item Variation of the spike shape as a function of recent firing history
-          (not time-invariant shape).
+    \item Variation of the spike shape as a function of recent firing history (not time-invariant shape).
 \end{itemize}
-In the following an image of the whole Data Recording, Spike Detection, and
-Spike Sorting process:
 \begin{figure}[H]
-    \includegraphics[scale=0.45]{3_1}
+    \includegraphics[scale=0.35]{3_1}
     \centering
 \end{figure}
 
-
 \subsection{Spike Sorting methods}
-When it comes at Spike Sorting, there are 3 main approaches:
+When it comes to Spike Sorting, there are three main approaches:
 \begin{itemize}
-    \item \textbf{Amplitude discriminator:} separate spikes according to their amplitude.
-          This method does not take into account the shape of a spike, only its
-          amplitude.
-    \item \textbf{Template matching:} select a characteristic spike shape for each cluster
-          and divide the spikes among the clusters via matching with the templates,
-          according to an appropriate distance measure. The main issues of this
-          approach is that the templates might need to adjust during the experiment
-          and that it is necessary a good way to select the templates.
-    \item \textbf{Window discriminator:} assign spikes crossing one or more windows
-          to the same neurons. Also in this case issue may arise, especially spike
-          shapes might overlap.
+    \item \textbf{Amplitude discriminator}: separate spikes according to their amplitude. This method does not take into account the shape of a spike, only its amplitude.\\
+    Main problem: spikes from different neurons may have the same peak amplitude but different shapes.
+    \item \textbf{Template matching}: select a characteristic spike shape for each cluster and divide the spikes among the clusters via matching with the templates, according to an appropriate distance measure.\\
+    Main problems: the templates might need to be adjusted during the experiment and it is necessary a good way to select the templates.
+    \item \textbf{Window discriminator}: assign spikes crossing one or more windows to the same neurons.\\
+    Main problem: it requires manual setting by the user and it is not suitable for many channels and subjectivity. Moreover, spikes may overlap: it may be difficult to set windows for discrimination and sparsely firing neurons may be missed.
 \end{itemize}
-Please note that these algorithms perform Spike Detection and Spike Sorting at the same time.
+Please note that these algorithms perform Spike Detection and Spike Sorting at the same time.\\
+\subsection{Spike Sorting steps}
 In general, Spike Sorting is carried out by following the steps shown below:
 \begin{figure}[H]
-    \includegraphics[scale=0.5]{3_2}
+    \includegraphics[scale=0.4]{3_2}
     \centering
 \end{figure}
 \subsubsection{Filtering}
-The first step consists in filtering out the low frequency components
-(\(<\) 300 Hz), in particular the local field potentials, in order to visualize
-spikes.
-To do so, a band 300-3000 Hz band-pass filter is employed: all the
-frequencies outside the specified range are rejected.
+The first step consists in filtering out the low frequency components (\(< 300 \,Hz\)), in particular the local field potentials, in order to visualize spikes. To do so, a \(300-3000 \,Hz\) band-pass filter is employed: all the frequencies outside the specified range are rejected.
+\begin{figure}[H]
+    \includegraphics[scale=0.4]{3_3}
+    \centering
+\end{figure}
 \subsubsection{Spike Detection}
-Spikes are commonly detect by using an amplitude threshold, as seen in the
-previous chapter. The optimal threshold can be set manually or automatically
-computed as a multiple of the standard deviation (SD) of the signal, where
-\begin{align*}
+Spikes are commonly detected by using an amplitude threshold, as seen in the previous chapter. The optimal threshold can be set manually or automatically computed as a multiple of the standard deviation (\(SD\)) of the signal:
+\begin{equation*}
     SD=\sigma=median\biggl(\frac{|x|}{0.6745}\biggr)
-\end{align*}
+\end{equation*}
 \subsubsection{Feature Extraction}
-Let's set the number of observations (i.e. spikes) to \(n\) and the
-variables (data points) to \(m\), thus a \(m\)-dimensional space is obtained.
-The idea is to extract a number of features \(p\), such that it has a lower
-dimensionality (\(p<m\)).\\
-The \(p\)-dimensional features can be selected in different ways:
+Let's set the number of observations (i.e. spikes) to \(n\) and the variables (data points) to \(m\), thus a \(m\)-dimensional space is obtained. The idea is to extract a number of features \(p\), such that \(p<m\). In this way the signal is described with a decreased number of features with respect to the original one.\\
+The \(p\) features can be selected:
 \begin{itemize}
-    \item Take basic properties of the spikes (amplitude, width, energy, ...),
-          not optimal in differentiating spikes.
-    \item Select a low number of components from a dimensionality reduction
-          technique, such as PCA. Notice that these components represent the directions
-          of maximum variance of the data, not necessarily the best separation.
-    \item Use wavelets, obtaining a time-frequency decomposition of the signal
-          with optimal resolution in both time and frequency domains.
+    \item Taking some basic properties of the spikes (amplitude, width, energy, ...) that are not optimal in differentiating spikes.
+    \item Selecting a low number of components from a dimensionality reduction technique, such as \textbf{PCA}. Notice that these components represent the directions of maximum variance of the data, not necessarily the best separation.
+    \item Using \textbf{wavelets}, obtaining a time-frequency decomposition of the signal with optimal resolution in both time and frequency domains.
 \end{itemize}
 \paragraph{Principal Component Analysis (PCA)}
-It is an unsupervised dimensionality reduction technique, which can be used
-also for feature extraction purposes. Data are rotated according to a new space
-having the orthogonal axes in the directions of maximum variance, then the new
-obtained principal components are ordered by their contribution to the overall
-variance, allowing to select only a fraction of the total number of components,
-still approximating the original data fairly well. Low variance is often
-interpreted as noise.
+It is an unsupervised dimensionality reduction technique, which can be used also for feature extraction purposes. Data are rotated according to a new space having the orthogonal axes in the directions of maximum variance, then the new obtained principal components are ordered by their contribution to the overall
+variance, allowing to select only a fraction of the total number of components, still approximating the original data fairly well. Low variance is often interpreted as background noise.\\
+The dimensionality of the data can therefore be reduced, without loss of relevant information, by extracting a lower dimensional component space covering the highest variance. 
+\begin{figure}[H]
+    \includegraphics[scale=0.35]{3_4}
+    \centering
+\end{figure}
 \paragraph{Wavelets}
-The wavelet transformation (WT) is a time-frequency representation of the signal,
-similar to the Fourier transform, but breaking the signal into its wavelets.
-It may be defined as the convolution between the signal \(x(t)\) and the
-wavelet functions \(\psi_{a,b}(t)\):
+The wavelet transformation (WT) is a time-frequency representation of the signal, where the signal is broken into its wavelets. It has the main advantage over conventional methods to provide an optimal resolution in both the time and the frequency domains.\\
+Wavelet analysis is similar to Fourier analysis in the sense that it breaks a signal down into its constituent parts for analysis. However, whereas the Fourier transform breaks the signal into a series of sine waves of different frequencies, the wavelet transformation breaks the signal into its "wavelets", scaled and shifted versions of the "mother wavelet".
+The Wavelet transform may be defined as the convolution between the signal \(x(t)\) and the wavelet functions \(\psi_{a,b}(t)\):
 \begin{align*}
-    W_\psi X(a,b)=\left\langle x(t)|\psi_{a,b}(t) \right\rangle
-    \quad\quad\quad\quad\text{with}\quad
-    \psi_{a,b}(t)=|a|^{-\frac{1}{2}}\psi\biggl(\frac{t-b}{a}\biggr)
+    W_\psi X(a,b)=\left\langle x(t)|\psi_{a,b}(t) \right\rangle\hspace{0.5cm}\text{with}\hspace{0.5cm}\psi_{a,b}(t)=|a|^{-\frac{1}{2}}\psi\biggl(\frac{t-b}{a}\biggr)
 \end{align*}
 where \(a\) and \(b\) are scale and translation parameters.\\
-Contracted wavelet function matches the high-frequency components, while
-dilated wavelet matches the low-frequency components, thus details of the signal
-at several scales can be obtained.\\
-The wavelet method coefficients are then selected such that they allow to
-distinguish well the spike shapes, in particular multi-modal distributions
-are preferred and unimodal distributions are to be avoided.
+Contracted wavelet function matches the high-frequency components, while dilated wavelet matches the low-frequency components, thus details of the signal at several scales can be obtained.
+\begin{figure}[H]
+    \includegraphics[scale=0.3]{3_5}
+    \centering
+\end{figure}
+Using wavelets, the info about the shape of the spikes is distributed in several coefficients, instead of only 2-3 PCs as it happens with PCA. A wavelet coefficient (or any other feature) good for distinguishing spike shapes should have a multi-modal distribution, unless there is only one cluster.
 \subsubsection{Clustering}
-The final step of spike sorting is to group spikes with similar features into
-clusters, corresponding to different neurons. Different approaches are available:
+The final step of spike sorting is to group spikes with similar features into clusters, corresponding to different neurons. Different approaches are available:
 \begin{itemize}
     \item Manual clustering
     \item Bayesian classification
@@ -121,53 +90,57 @@ clusters, corresponding to different neurons. Different approaches are available
     \item K-Means
     \item Superparamagnetic clustering
 \end{itemize}
+\paragraph{K-means Clustering Algorithm}
+K-means clustering is a partitioning method, that treats each observation in the data as an object having a location in the space. It finds a partition in which objects within each cluster are as close to each other as possible, and as far from objects in other clusters as possible.\\
+Each cluster in the partition is defined by its member objects and by its centroid, or center. The centroid of each cluster is the point to which the sum of distances from all the objects in that cluster in minimized.\\
+It's quite important that the user sets the correct number of clusters (centroids can eventually be chosen).\\
+This method works well with spherical and similarly scattered clusters.
+\begin{figure}[H]
+    \includegraphics[scale=0.3]{3_6}
+    \centering
+\end{figure}
 \paragraph{Superparamagnetic Clustering}
-This method is inspired by statistical mechanics, it does not assume
-a-priori distributions for the data, and exploit only one parameter to
-form clusters: temperature.\\
-The \(p\)-selected features of a generic \(i\)-th spike are represented by a
-point \(x_i\) in a \(p\)-dimensional phase space. Then, let's define the
-interaction strength between two points \(x_i\) and \(x_j\):
-\begin{align*}
-    J_{ij}=
-    \begin{cases}
-        \begin{matrix}
-            \frac{1}{K}\exp{\biggl(-\frac{\|x_i-x_j\|^2}{2a^2}\biggr)} &  & \text{if}\,x_i\,\text{is a nearest neighbor of}\,x_j \\
-            0                                                          &  & \text{else}
-        \end{matrix}
-    \end{cases}
-\end{align*}
-where \(a\) is the average nearest-neighbor distance and \(K\) is the
-number of nearest neighbors.
-As a consequence, similar spikes will exhibit a strong interaction.\\
-At this point, a random state is assigned to each point \(x_i\) and \(N\) Monte
-Carlo iterations are run for different temperatures \(T\). A point \(x_i\) is
-randomly selected and its state is randomly changed to \(s_{new}\).
-The probability that the nearest neighbors of \(x_i\) will change their state
-to \(s_{new}\) is given by:
-\begin{align*}
-    p_{ij}=1-\exp{\biggl(-\frac{J_{ij}}{T}\delta_{s_i,s_j}\biggr)}
-\end{align*}
-This implies that close points will change their status together,
-forming clusters of spikes with similar shape.\\
-In particular
+This method is inspired by statistical mechanics, it does not assume a-priori distributions for the data, and groups spikes into clusters as a function of a single parameter, the temperature.\\
+It is at the base of the software realized by the group of Rodrigo Quian Quiroga (University of Leicester, UK) called Wave Clus.
+This method is implemented as an iteration (by Monte Carlo method) of a Potts model. The Potts model is a generalization of the Ising model, where instead of having spins with values \(\pm1/2\), there are q different states per particle.
 \begin{itemize}
-    \item High temperatures correspond to a low probability of
-          changing the state \(\Rightarrow\) states change randomly, thus no clusters
-          are formed (paramagnetic phase).
-    \item Low temperatures correspond to a high probability of changing to the
-          same state, regardless of the interaction strength \(J_{ij}\)
-          \(\Rightarrow\) all states are changed to the same, thus all spikes belong
-          to the same cluster (ferromagnetic phase).
-    \item Medium temperatures correspond to a phase in which only similar spikes
-          will change their state together, forming meaningful clusters
-          (Superparamagnetic phase).
+    \item The \(p\)-selected features of a generic \(i\)-th spike are represented by a point \(x_i\) in a \(p\)-dimensional phase space. Then, let's define the interaction strength between two points \(x_i\) and \(x_j\):
+    \begin{align*}
+        J_{ij}=
+        \begin{cases}
+            \begin{matrix}
+                \frac{1}{K}\exp{\biggl(-\frac{\|x_i-x_j\|^2}{2a^2}\biggr)} &  & \text{if}\,x_i\,\text{is a nearest neighbor of}\,x_j \\
+                0                                                          &  & \text{else}
+            \end{matrix}
+        \end{cases}
+    \end{align*}
+    where \(a\) is the average nearest-neighbor distance and \(K\) is the number of nearest neighbors. As a consequence, similar spikes will exhibit a strong interaction.
+    \item At this point, a random state is assigned to each point \(x_i\) and \(N\) Monte Carlo iterations are run for different temperatures \(T\). A point \(x_i\) is randomly selected and its state is randomly changed to \(s_{new}\) (chosen between 1 and \(q\)). The probability that the nearest neighbors of \(x_i\) will change their state to \(s_{new}\) is given by: 
+    \begin{align*}
+    p_{ij}=1-\exp{\biggl(-\frac{J_{ij}}{T}\delta_{s_i,s_j}\biggr)}
+    \end{align*}
+    This implies that close points will change their status together, forming clusters of spikes with similar shape. This observation can be quantified by measuring the point-point correlation \(\delta_{s_i,s_j}\) and defining \(x_i,x_j\) to be members of the same cluster if \(\delta_{s_i,s_j}\leq\theta\), for a given threshold \(\theta\).\\
+    Moreover:
+    \begin{itemize}
+        \item High temperatures correspond to a low probability of changing the state \(\Rightarrow\) states change randomly, thus no clusters are formed (paramagnetic phase).
+        \item Low temperatures correspond to a high probability of changing to the same state, regardless of the interaction strength \(J_{ij}\) \(\Rightarrow\) all states are changed to the same, thus all spikes belong to the same cluster (ferromagnetic phase).
+        \item Medium temperatures correspond to a phase in which only similar spikes will change their state together, forming meaningful clusters (superparamagnetic phase).
+    \end{itemize}
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[scale=0.35]{3_7}
+    \centering
+\end{figure}
+In this image some large size clusters corresponding to the optimal sorting can be observed:
+\begin{itemize}
+    \item Clusters partially overlap
+    \item They have a large variance
+    \item The centers fall outside the clusters
+    \item The distance between arbitrarily chosen points of the same cluster can be much larger than the distance between points in different clusters. 
 \end{itemize}
 
-
 \subsection{Miscellaneous}
-In the following are reported some further remarks and considerations concerning
-Spike Sorting.
+In the following are reported some further remarks and considerations concerning Spike Sorting.
 \subsubsection{Spike Sorting issues}
 The main issues when it comes to Spike Sorting are listed below:
 \begin{itemize}
@@ -184,22 +157,16 @@ The main issues when it comes to Spike Sorting are listed below:
           amplitude and may be mistakenly considered as separate clusters.
 \end{itemize}
 \subsubsection{KiloSort}
-The aim is to develop a fully automated, scalable, and accurate spike sorter,
-removing the burden of this task from researchers. It belongs to the template
-matching class of Spike Sorting algorithms.
-The main hypothesis of KiloSort is that spatial and temporal shapes of a waveform
-provide all the information necessary to assign a given spike to a neuron.
-This algorithm exploits template matching in both Spike Detection and Spike
-Sorting, which are condensed into a single unified model describing the voltage
-\(V\) of channel \(i\) at the time instant \(t\):
+Kilosort is a project whose aim is to develop a fully automated, scalable, and accurate spike sorter, removing the burden of this task from researchers. It belongs to the template
+matching class of Spike Sorting algorithms.\\
+The main hypothesis of KiloSort is that spatial and temporal shapes of a waveform provide all the information necessary to assign a given spike to a neuron. This algorithm exploits template matching in both spike detection and spike clustering, which are condensed into a single unified model describing the voltage \(V\) of channel \(i\) at the time instant \(t\):
 \begin{align*}
     V(i,t)=\sum_{k=1}^{N_{spike}}A_{\sigma(k)}(i,t-t_k)\cdot x(k) + noise
 \end{align*}
 with \(A_{\sigma(k)}(i,t-t_k)\) being the spike template for the \(k\)-th neuron
-and \(x(k)\) the amplitude of the spike emitted by the \(k\)-th neuron.
+and \(x(k)\) the amplitude of the spike emitted by the \(k\)-th neuron. Hence, it basically omits spike detection and PCA (both of these steps may discard potentially useful information) and instead combines the identification of template waveforms and associated spike times.
 \subsubsection{Performance evaluation}
 Different Spike Sorting methods can be compared by testing them on simultaneous
-extracellular and intra-cellular recordings datasets, in a similar fashion w.r.t.
-Spike Detection. The same metrics are generally used. The SpikeForest project
-aims at benchmarking and testing the finest and most recent Spike Sorting
-algorithms.
+extracellular and intra-cellular recordings datasets, in a similar fashion with respect to
+Spike Detection. Often simulated datasets are used, where the identity of each spike is known: it is important to create datasets that mimic as accurately as possible the characteristics of real recordings in terms of noise distributions, spike features, etc.\\
+The SpikeForest project aims at benchmarking and testing the finest and most recent Spike Sorting algorithms.
