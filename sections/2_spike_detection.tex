@@ -115,7 +115,8 @@ The threshold (\(Thr\)) can be defined in several ways:
     \item \(Thr=n\sigma[V]\): \(n\) times the standard deviation \(\sigma\) of the basal signal noise.
     \item \(Thr=aP2P[V]\): fraction of the full amplitude (peak-to-peak) of the signal.
     \item \(Thr=n\sigma_N[V]\): \(n\) times the \(\sigma\) estimated from the
-          Median Absolute Deviation (\(MAD\)), with \(MAD=median(|x-median(x)|)\).
+          Median Absolute Deviation (\(MAD\)), with \(MAD=median(|x-median(x)|)\) and \(\sigma_N=1.4826\cdot MAD\). 
+          A good value for \(n\) is \(4\).
 \end{itemize}
 \paragraph{Hard Threshold Local Maxima}
 This method is very similar to the previous ones, but in this case the spike position is
