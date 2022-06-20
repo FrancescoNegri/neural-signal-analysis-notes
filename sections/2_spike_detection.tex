@@ -77,7 +77,6 @@ Let's recall the mathematically definition of a spike train:
 important step of the analysis, as it affects all the subsequent steps.\\
 \textbf{Spike Sorting:} it is the process of associating each spike to a specific putative source
 (classify spikes and individual sources).\\
-
 When performing Spike Detection there are two main issues:
 \begin{itemize}
     \item \textbf{Reliability} of the selected detection method
@@ -92,7 +91,6 @@ They can be classified into 3 groups:
     \item \textbf{Energy operator}: non-linear energy operator accentuating high frequency content, i.e. spikes.
     \item \textbf{Template matching}: it is an approach based on the spike shape, involving Spike Sorting.
 \end{itemize}
-
 \subsubsection{Thresholding algorithms}
 \paragraph{Simple Hard Threshold}
 A \textbf{threshold} value is defined (either positive or negative). If the signal overcomes the threshold,
@@ -115,7 +113,7 @@ The threshold (\(Thr\)) can be defined in several ways:
     \item \(Thr=n\sigma[V]\): \(n\) times the standard deviation \(\sigma\) of the basal signal noise.
     \item \(Thr=aP2P[V]\): fraction of the full amplitude (peak-to-peak) of the signal.
     \item \(Thr=n\sigma_N[V]\): \(n\) times the \(\sigma\) estimated from the
-          Median Absolute Deviation (\(MAD\)), with \(MAD=median(|x-median(x)|)\) and \(\sigma_N=1.4826\cdot MAD\). 
+          Median Absolute Deviation (\(MAD\)), with \(MAD=median(|x-median(x)|)\) and \(\sigma_N=1.4826\cdot MAD\).
           A good value for \(n\) is \(4\).
 \end{itemize}
 \paragraph{Hard Threshold Local Maxima}
@@ -140,25 +138,24 @@ in a single window (typically at the window borders).
     \includegraphics[scale=0.18]{2_9.png}
 \end{figure}
 \paragraph{Precision Timing Spike Detection (PTSD)}
-This method solves the undersampling issue. \\ The operation of PTSD differs from the previous 
-algorithms in a variety of aspects: first and foremost, the presence of a differential threshold 
-instead of a unipolar one; moreover, in addition to \(RP\), there is also another time interval 
+This method solves the undersampling issue. \\ The operation of PTSD differs from the previous
+algorithms in a variety of aspects: first and foremost, the presence of a differential threshold
+instead of a unipolar one; moreover, in addition to \(RP\), there is also another time interval
 called \textbf{Peak Lifetime Period} \(PLP\) (i.e., the maximum duration that a spike can have).
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{2_10.png}
 \end{figure}
-Proceeding in order, the algorithm searches for a relative maximum/minimum (\(1^\circ\) \(RMM\), 
-Relative Maximum/Minimum): if it finds a maximum then it will search the signal for 
-the nearest minimum (\(2^\circ\) \(RMM\)) within the \(PLP\) window, while if it finds a minimum it will proceed 
-in the same way but looking for a maximum. If the difference between the first \(RMM\) and the second \(RMM\) 
-(i.e., the peak-to-peak amplitude of the spike), exceeds the Differential Threshold (\(DT\)), 
-then the spike is identified (\textit{Fig. a}). In case the second \(RMM\) falls at the end of the \(PLP\) window, 
-another time window called \textbf{overshoot} is used to find the correct peak value (\textit{Fig. b}). The \(DT\) is 
+Proceeding in order, the algorithm searches for a relative maximum/minimum (\(1^\circ\) \(RMM\),
+Relative Maximum/Minimum): if it finds a maximum then it will search the signal for
+the nearest minimum (\(2^\circ\) \(RMM\)) within the \(PLP\) window, while if it finds a minimum it will proceed
+in the same way but looking for a maximum. If the difference between the first \(RMM\) and the second \(RMM\)
+(i.e., the peak-to-peak amplitude of the spike), exceeds the Differential Threshold (\(DT\)),
+then the spike is identified (\textit{Fig. a}). In case the second \(RMM\) falls at the end of the \(PLP\) window,
+another time window called \textbf{overshoot} is used to find the correct peak value (\textit{Fig. b}). The \(DT\) is
 always calculated as the standard deviation of the noise multiplied by a coefficient.\\
-Of course, this algorithm can't be used in real time, because it needs future times, but it allows to detect also the 
+Of course, this algorithm can't be used in real time, because it needs future times, but it allows to detect also the
 spikes passing through the boundaries of the considered window.
-
 This technique is more demanding from the computational point of view, but it allows to detect
 also the spikes passing through the boundaries of the considered window.
 \subsubsection{Energy operator algorithms}
@@ -229,7 +226,6 @@ There are 3 main types of groundtruths:
           In particular, it is common to exploit manually detected and sorted spikes to be
           fed into computational models as input.
 \end{itemize}
-
 \subsubsection{Spike Detection Performance Evaluation}
 Several distinct metrics can be taken into account when evaluating the performance of
 a Spike Detection algorithm, in particular the most used ones are:
