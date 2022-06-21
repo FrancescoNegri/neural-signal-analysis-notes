@@ -12,48 +12,71 @@ signal (acquired from a single electrode) is characterized by 2 distinct pattern
     \centering
 \end{figure}
 
-
 \subsection{Data visualization tools}
 The first preliminary steps of Spike Analysis consist in taking a look at the raw data, then
-deriving the spike train for each channel and visualize it. Therefore, it might be useful to define
-a set of proper plots and metrics for data visualization. Some of the more widely used are: Raster Plot, Spike Count, Instantaneous Firing Rate (IFR), Array-wide Firing Rate (i.e. Average Firing Rate, AFR), Mean Firing Rate (MFR), Inter Spike Interval Histogram (ISI), Joint Interspike Interval Histogram (JISI), Cross Interspike Interval Histogram (CISI), LvR. 
+deriving the spike train for each channel and visualizing it. Therefore, it might be useful
+to define a set of proper plots and metrics for data visualization. Some of the more widely
+used are: Raster Plot, Spike Count, Instantaneous Firing Rate (IFR), Array-wide Firing Rate
+(a.k.a. Average Firing Rate, AFR), Mean Firing Rate (MFR), Inter Spike Interval Histogram
+(ISI), Joint Interspike Interval Histogram (JISI), Cross Interspike Interval Histogram
+(CISI), LvR.
 \subsubsection{Raw data multi-channel plot}
-The following plot shows the activity - i.e. voltage - recorded by 8 distinct electrodes as a function of time.
+The following plot shows the activity - i.e. voltage - recorded by 8 distinct electrodes
+as a function of time.
 \begin{figure}[H]
     \includegraphics[scale=0.3]{4_2}
     \centering
 \end{figure}
 \subsubsection{Raster Plot}
-The Raster Plot (also known as Spike Raster) is done after Spike Sorting and allows to visualize at the same time the spike trains coming from multiple recording electrodes on the same time axis.\\
-This is the graphical representation of a point process. What is significant in this graph is the time curse of these events, and their spatial distribution, so how they are distributed on a single channel: in fact, you can either go through each single channel over time but also look at the relationships between the channels. The amplitude of the signals has no meaning: they all have a fixed amplitude of 1.\\
-This plot allows to observe activation patterns across channels, produced by the fact that neurons influence each other. In the following graph, for instance, there are some events that we cannot see if we are looking only at one channel at a time but we can see if we make a comparison between multiple ones. The pattern in the red rectangle is called neuronal burst.
+The Raster Plot (also known as Spike Raster) is done after Spike Sorting and allows to
+visualize at the same time the spike trains coming from multiple recording electrodes on
+the same time axis.\\
+This is the graphical representation of a point process. What is significant in this graph
+is the time curse of these events, and their spatial distribution, thus how they are
+distributed in a single channel: in fact, it is either possible to go through each single
+channel over time or even to look at the relationships between the channels.
+The amplitude of the signals has no meaning: they all have a fixed amplitude of 1.\\
+This plot allows to observe activation patterns across channels, produced by the fact that
+neurons influence each other. In the following plot, for instance, there are some events
+that cannot be spotted by looking only at one channel at a time; however, they can be noticed
+if a comparison is made between several channels. The pattern in the red rectangle is called
+Network Burst, as it involves all the channels.
 \begin{figure}[H]
     \includegraphics[scale=0.4]{4_3}
     \centering
 \end{figure}
 \subsubsection{Task-Related Raster Plot}
-Be careful not to confuse plots: the Task-Related (or Stimulus-Related) Raster Plot is similar to the ordinary Raster Plot, but it has a quite different meaning: the multiple lines do not represent channels, but portions of the recording coming from just one channel. The signal portions are divided according to the execution of a task or the receiving of a stimulus.
+Be careful not to confuse plots: the Task-Related (or Stimulus-Related) Raster Plot is
+similar to the ordinary Raster Plot, nonetheless it has a quite different meaning: the
+multiple lines do not represent channels, but portions of the recording coming from just
+one channel. The signal portions are divided according to the execution of a task or the
+receiving of a stimulus.
 \begin{figure}[H]
     \includegraphics[scale=0.25]{4_4}
     \centering
 \end{figure}
 \subsubsection{High-Density Data Raster Plot}
-This is once again a type of Raster Plot. Data comes from several channels and they cover a relatively
-large span of time. As a consequence, it is almost impossible to distinguish single spikes by eye,
-thus this high-density plot is usually inspected by looking at the shaded regions, as they exhibit a
-higher concentration of fired spikes, implying a greater activity.
+This is once again a type of Raster Plot. Data comes from several channels and they cover a
+relatively large span of time. As a consequence, it is almost impossible to distinguish
+single spikes by eye, thus this high-density plot is usually inspected by looking at the
+shaded regions, as they exhibit a higher concentration of fired spikes, implying a greater
+activity.
 \begin{figure}[H]
     \includegraphics[scale=0.5]{4_5}
     \centering
 \end{figure}
-In this case we have 831 neurons delivering signals. We can see that different areas of the brain are characterized by different activities, for example the thalamus has a more intense activity than the visual cortex. Hence, we can understand which area of the brain is firing looking at their fingerprint.
+In this case there are 831 recorded neurons delivering signals. It can be seen that
+different areas of the brain are characterized by different activities, for example the
+thalamus has a more intense activity than the visual cortex. Hence, it can be understood
+which areas of the brain are firing by just looking at their fingerprints.
+
 \subsection{Spike Analysis: Spike Count and Firing Rate metrics}
 \subsubsection{Spike Count}
-This metric is obtained by dividing the time axis into equal bins \(\Delta{t}=[t_a,t_b]\) and
-counting the number of spikes \(N_{ab}\) occurring in each bin.
-Then, an histogram showing the Spike Count is plotted.
+This metric is obtained by dividing the time axis into equal bins \(\Delta{t}=[t_a,t_b]\)
+and counting the number of spikes \(N_{ab}\) occurring in each bin. Then, an histogram
+showing the Spike Count is plotted.
 \subsubsection{Instantaneous Firing Rate}
-Dividing the Spike Count for the dimension of the bin, we obtain the actual firing rate.
+By dividing the Spike Count for the dimension of the bin, the actual firing rate is obtained.
 \begin{align*}
     IFR=r(t)=\frac{N_{ab}(t)}{\Delta{t}}
 \end{align*}
@@ -63,8 +86,11 @@ The IFR is measured in spikes per second.
     \centering
 \end{figure}
 \subsubsection{Spike Density Function}
-The Spike Density Function (SDF) is obtained by associating a proper distribution (typically Gaussian) to each single spike, and by summing up the various individual distributions.\\
-We can define the firing rate as a function of time: if \(N_{ab}\) is the number of spikes within a certain interval \(\Delta t\):
+The Spike Density Function (SDF) is obtained by associating a proper distribution
+(typically Gaussian) to each single spike, and by summing up the various individual
+distributions.\\
+The firing rate is thus defined as a function of time: if \(N_{ab}\) is the number of spikes
+within a certain interval \(\Delta t\):
 \begin{equation*}
     r(t)=\frac{N_{ab}}{\Delta t}
 \end{equation*}
@@ -72,11 +98,13 @@ We can define the firing rate as a function of time: if \(N_{ab}\) is the number
     \includegraphics[scale=0.4]{4_7}
     \centering
 \end{figure}
-This analysis is often used to appreciate the inhibition or excitation processes of neurons related to the introduction of pharmacological treatments in cell cultures.
+This analysis is often employed to appreciate the inhibition or excitation processes of
+neurons related to the introduction of pharmacological treatments in cell cultures.
 \subsubsection{Array-Wide Firing Rate}
 The Array-Wide Firing Rate (AWFR), often called Average Firing Rate (AFR), it is a sort of
-IFR obtained by taking into account the whole network - i.e. all the recorded channels, not just a single one.
-This metric is often employed in neuropharmacology, in order to assess the time of response of a drug.\\
+IFR obtained by taking into account the whole network - i.e. all the recorded channels,
+not just a single one. This metric is often employed in neuropharmacology, in order to
+assess the time of response to a drug.\\
 If \(M\) is the number of electrodes in the network, the AFR can be written as:
 \begin{align*}
     AWFR=awfr(t)=mean(IFR)=\frac{1}{M}\sum_{j=1}^{M}r_{j}(t)
@@ -86,14 +114,22 @@ If \(M\) is the number of electrodes in the network, the AFR can be written as:
     \centering
 \end{figure}
 \subsubsection{Mean Firing Rate}
-The Mean Firing Rate (MFR) represents a single numerical metric of the activity of neurons for the entire network (\(M\) channels). It is expressed as
+The Mean Firing Rate (MFR) represents a single numerical metric of the activity of neurons
+for the entire network (\(M\) channels). It is expressed as
 \begin{align*}
     MFR=\frac{1}{T}\sum_{j=1}^{M}N_j
 \end{align*}
-where \(T\) is the considered time window (somehow corresponding to the previously seen \(\Delta{t}\)), while \(N_j\) is the number of spikes recorded in \(T\) for the \(j\)-th electrode.\\
-Notice once again that both IFR and AWFR are functions of time, continuous in the time-domain, while MFR is a single value giving information on the average degree of activation of the whole neural network in a determined time interval (average number of spikes divided by the time duration of the acquisition).\\
+where \(T\) is the considered time window (somehow corresponding to the previously seen
+\(\Delta{t}\)), while \(N_j\) is the number of spikes recorded in \(T\) for the \(j\)-th
+electrode.\\
+Notice once again that both IFR and AWFR are functions of time, continuous in the time-domain,
+while MFR is a single value giving information on the average degree of activation of the
+whole neural network in a determined time interval (average number of spikes divided by the
+time duration of the acquisition).\\
 The following plot illustrates the Mean Firing Rate, indicating the average neural activity, at
-different concentrations of a brain inhibitor drug. The firing rate was computed in each phase with respect to the one in that specific phase where there is no drug. Then, a sigmoid was used to fit the dots in order to find when the drug is able to arrive at 50\(\%\) of its possible effect.
+different concentrations of a brain inhibitor drug. The firing rate was computed in each phase
+with respect to the baseline - i.e. no drug - case. Then, a sigmoid was used to fit the dots
+in order to find when the drug is able to arrive at \(50\%\) of its possible effect.
 \begin{equation*}
     \frac{MFR(c_i)}{MFR(c_0)}\cdot100
 \end{equation*}
@@ -101,24 +137,34 @@ different concentrations of a brain inhibitor drug. The firing rate was computed
     \includegraphics[scale=0.25]{4_9}
     \centering
 \end{figure}
+
 \subsection{Spyke Analysis: Inter Spike Interval}
 \subsubsection{Inter Spike Interval}
-The Inter Spike Interval (ISI) is the interval between two consecutive spikes. It is used to compute the Inter Spike Interval Histogram (ISIH), an index of the probability that a spike is fired a certain time \(\tau\) after a reference spike. Given \(N\) spikes, the ISIH metric is computed as:
+The Inter Spike Interval (ISI) is the interval between two consecutive spikes. It is used to
+compute the Inter Spike Interval Histogram (ISIH), an index of the probability that a spike
+is fired a certain time interval \(\tau\) after a reference spike. Given \(N\) spikes, the
+ISIH metric is computed as:
 \begin{align*}
     ISIH(\tau)=\frac{1}{N-1}\sum_{s=1}^{N-1}\delta{(t_{s+1}-t_{s}-\tau)}
 \end{align*}
-The result can be given both as a percentage value and as spikes/bin.\\
-An histogram as the following one is often employed to visualize the distribution of the Inter Spike Intervals.
+The result can be given both as a percentage value and as \(spikes/bin\).\\
+An histogram as the following one is often employed to visualize the distribution of the
+Inter Spike Intervals.
 \begin{figure}[H]
     \includegraphics[scale=0.25]{4_10}
     \centering
 \end{figure}
-It is common to have a higher probability close to the reference spike, while it tends to decrease as the Inter Spike Interval grows. 
+It is common to have a higher probability close to the reference spike, while it tends to
+decrease as the Inter Spike Interval grows.
 In general:
 \begin{itemize}
-    \item If there are a lot of spikes one near the other, the frequency will be high and the ISI will be low.
-    \item If there are long intervals without any activity, there is a very low frequency with a high ISI.
-    \item If the spike train is made of packed spikes alternating to empty intervals, then the histogram will display 2 distinct peaks: one for the high frequency components and one for the low frequency components.
+    \item If there are a lot of spikes one near the other, the frequency will be high and
+          the ISI will be low.
+    \item If there are long intervals without any activity, there is a very low frequency
+          with a high ISI.
+    \item If the spike train is made of packed spikes alternating to empty intervals, then
+          the histogram will display 2 distinct peaks: one for the high frequency components and
+          one for the low frequency components.
 \end{itemize}
 For a small cluster, the distribution will be closer to 0.
 \subsubsection{Joint Inter Spike Interval}
@@ -136,7 +182,9 @@ colormaps.
 \end{figure}
 \subsubsection{Cross Inter Spike Interval}
 The Cross Inter Spike Interval (CISI) works in a fashion similar to JISI, but it analyzes the
-dependance between spikes of two different trains. It allows to relate time intervals in different channels to explain some sort of causality between the data (if the probability of interaction is high).\\
+dependance between spikes of two different trains. It allows to relate time intervals in
+different channels to explain some sort of causality between the data (if the probability of
+interaction is high).\\
 The probability histogram CISIH is given by:
 \begin{align*}
     CISIH(\tau_{post},\tau_{cross})=\frac{1}{N-2}\sum_{a=1}^{N_a-1}\delta{(t_{a+1}-t_{a}-\tau_{post})}\ast \delta{(t_a-t_b-\tau_{cross})}
@@ -145,7 +193,6 @@ The probability histogram CISIH is given by:
     \includegraphics[scale=0.4]{4_12}
     \centering
 \end{figure}
-
 \paragraph{Poisson Distribution}
 Several neurons exhibit a considerable degree of variability in their firing
 sequence, especially in \textit{in vivo} recordings.\\
@@ -155,18 +202,21 @@ A class of irregular spike trains can be defined after these 3 assumptions:
     \item Every spike is independent of other spikes.
     \item Every spike has a uniform probability of occurrence in time.
 \end{enumerate}
-A simple model exploiting the \textbf{Poisson distribution} can be built. It assumes an independence hypothesis between the time of occurrence of neighbouring spikes and the result is comparable to actual spike trains (even if real spike trains tend to have inter spike intervals
-(ISI) dependent on the preceding spike intervals).\\
-In general, a Poisson spike sequence is well-suited at describing tonic firing neurons (not characterized by burst features).
+A simple model exploiting the \textbf{Poisson distribution} can be built. It assumes an
+independence hypothesis between the time of occurrence of neighbouring spikes and the
+result is comparable to actual spike trains (even if real spike trains tend to have inter
+spike intervals (ISI) dependent on the preceding spike intervals).\\
+In general, a Poisson spike sequence is well-suited at describing tonic firing neurons
+(not characterized by burst features).
 \begin{figure}[H]
     \includegraphics[scale=0.25]{4_13}
     \centering
 \end{figure}
-
 \subsubsection{Coefficient of Variation}
 It is the simplest index to measure the variability of the ISI distribution. The
 coefficient of variation \(C_v\) is a dimensionless number computed as the
-standard deviation of the ISI distribution normalized by the mean interspike interval:
+standard deviation of the ISI distribution normalized by the mean interspike
+interval \(\overline{t}\):
 \begin{align*}
     C_v=\frac{\sigma_t}{\overline{t}}
 \end{align*}
@@ -195,11 +245,12 @@ one another, but their overall distribution is similar. As a result, the
 coefficient of variation \(C_v\) is the same, while the local variation \(L_v\)
 changes according to the relative distribution of spikes.
 \begin{figure}[H]
-    \includegraphics[scale=0.35]{4_14}
+    \includegraphics[scale=0.2]{4_14}
     \centering
 \end{figure}
 \subsubsection{LvR}
-This metric exhibits an enhanced invariance with respect to firing rate fluctuations. It is defined as:
+This metric exhibits an enhanced invariance with respect to firing rate fluctuations.
+It is defined as:
 \begin{align*}
     L_{v}R
     =\frac{3}{n-1}\sum_{i=1}^{n-1}\biggl(1-\frac{4I_{i}I_{i+1}}{(I_{i}+I_{i+1})^2}\biggr)\biggl(1+\frac{4R}{I_{i}+I_{i+1}}\biggr)
@@ -214,7 +265,7 @@ according to the displacement of spikes with respect to one another:
 \end{itemize}
 The following image shows these spike generation patterns, in this case employed to identify specific cortical areas.
 \begin{figure}[H]
-    \includegraphics[scale=0.75]{4_15}
+    \includegraphics[scale=0.6]{4_15}
     \centering
 \end{figure}
 
@@ -232,8 +283,9 @@ of fired spikes in a unit of time - is assumed to be constant, thus
 where \(n\) is the overall number of observed spikes
 and \(T\) is the total observation period.\\
 Now, let's divide the observation period \(T\) in a number \(M\) of bins having
-equal length \(\Delta t\), such that \(M=\frac{T}{\Delta{t}}\). M is chosen in order to have every bin containing 1 or 0 spikes. Therefore,
-the probability of finding 1 spike in a time interval \(\Delta{t}\) is:
+equal length \(\Delta t\), such that \(M=\frac{T}{\Delta{t}}\). \(M\) is chosen in order to
+have every bin containing 1 or 0 spikes. Therefore, the probability of finding 1 spike in a
+time interval \(\Delta{t}\) is:
 \begin{align*}
     P\{\text{1 spike in}\,\Delta{t}\}=P_{\Delta{t}}[1]
     =\frac{\text{Number of spikes in}\,T}{\text{Number of bins}\,\Delta{t}}
@@ -259,34 +311,34 @@ Let the bin duration tend to zero:
 \begin{align*}
     P_T[n]=P\{n\,\text{spikes in}\,T\} =\lim_{\Delta{t}\to{0}}\frac{M!}{(M-n)!\cdot{n!}}\cdot{\bigl(r\cdot{\Delta{t}}\bigr)^n}\cdot{\bigl(1-r\cdot{\Delta{t}}\bigr)^{M-n}}
 \end{align*}
-Since \(T\) and \(n\) are fixed, if \(\Delta{t}\to{0}\), the number of bins \(M\) becomes larger and larger, thus and approximation can be made:
+Since \(T\) and \(n\) are fixed, if \(\Delta{t}\to{0}\) the number of bins \(M\) becomes
+larger and larger, thus an approximation can be made:
 \begin{equation*}
     \bigl(M-n\bigr)\sim{M}=\frac{T}{\Delta{t}}
 \end{equation*}
 Considering the terms of the product separately:
 \begin{itemize}
     \item For big \(M\), the binomial coefficient can be simplified as:
-    \begin{equation*}
-        \frac{M!}{(M-n)!\cdot{n!}}
-        \sim\frac{M^n}{n!}
-        =\frac{\bigl(\frac{T}{\Delta{t}}\bigr)^n}{n!}
-        =\frac{T^n}{\Delta{t}^n\cdot{n!}}
-    \end{equation*}
+          \begin{equation*}
+              \frac{M!}{(M-n)!\cdot{n!}}
+              \sim\frac{M^n}{n!}
+              =\frac{\bigl(\frac{T}{\Delta{t}}\bigr)^n}{n!}
+              =\frac{T^n}{\Delta{t}^n\cdot{n!}}
+          \end{equation*}
     \item For the term \((1-r\cdot\Delta t)^{M-n}\), the approximation introduced before can be applied:
-    \begin{equation*}
-         \lim_{\Delta{t}\to{0}}\bigl(1-r\cdot{\Delta{t}}\bigr)^{M-n}
-         \sim\lim_{\Delta{t}\to{0}}\bigl(1-r\cdot{\Delta{t}}\bigr)^M
-    \end{equation*}
-    By substituting \(\epsilon=-r\cdot\Delta t\):
-    \begin{equation*}
-         \Delta t=-\frac{\epsilon}{r}\rightarrow M=\frac{T}{\Delta t}\hspace{0.5cm}\text{becomes}\hspace{0.5cm} M=-\frac{r\cdot T}{\epsilon}
-    \end{equation*}
-    Therefore:
-    \begin{align*}
-         \lim_{\Delta{t}\to{0}}\bigl(1-r\cdot{\Delta{t}}\bigr)^M=\lim_{\epsilon\to{0}}\bigl(1+\epsilon\bigr)^{-\frac{r\cdot{T}}{\epsilon}}=                     \\
-     & =\lim_{\epsilon\to{0}}\biggl[\bigl(1+\epsilon\bigr)^{\frac{1}{\epsilon}}\biggr]^{-r\cdot{T}}
-    =e^{-r\cdot{T}}
-    \end{align*}
+          \begin{equation*}
+              \lim_{\Delta{t}\to{0}}\bigl(1-r\cdot{\Delta{t}}\bigr)^{M-n}
+              \sim\lim_{\Delta{t}\to{0}}\bigl(1-r\cdot{\Delta{t}}\bigr)^M
+          \end{equation*}
+          By substituting \(\epsilon=-r\cdot\Delta t\):
+          \begin{equation*}
+              \Delta t=-\frac{\epsilon}{r}\rightarrow M=\frac{T}{\Delta t}\hspace{0.5cm}\text{becomes}\hspace{0.5cm} M=-\frac{r\cdot T}{\epsilon}
+          \end{equation*}
+          Therefore:
+          \begin{align*}
+              \lim_{\Delta{t}\to{0}}\bigl(1-r\cdot{\Delta{t}}\bigr)^M=\lim_{\epsilon\to{0}}\bigl(1+\epsilon\bigr)^{-\frac{r\cdot{T}}{\epsilon}}=\lim_{\epsilon\to{0}}\biggl[\bigl(1+\epsilon\bigr)^{\frac{1}{\epsilon}}\biggr]^{-r\cdot{T}}
+              =e^{-r\cdot{T}}
+          \end{align*}
 \end{itemize}
 Putting all the elements together:
 \begin{align*}
@@ -301,12 +353,12 @@ and hence the Poisson distribution is obtained:
     P_T[n]=\frac{\bigl(r\cdot T\bigr)^n}{n!}\cdot{e^{-r\cdot T}}
 \end{equation*}
 \begin{figure}[H]
-    \includegraphics[scale=0.35]{4_17}
+    \includegraphics[scale=0.45]{4_17}
     \centering
 \end{figure}
 \subsubsection{ISI Probability Density Function}
 \begin{figure}[H]
-    \includegraphics[scale=0.35]{4_18}
+    \includegraphics[scale=0.4]{4_18}
     \centering
 \end{figure}
 Let's now consider two subsequent time instants \(t_0\) and \(t_0+\tau\), then compute
@@ -347,6 +399,3 @@ Poisson distribution, intended as the chance to generate a spike event after a t
 with \(t=\tau\) and \(\frac{1}{\overline{t}}=r=AFR\).\\
 In general, the function \(p(t)\) - i.e. the ISI histogram - is obtained
 experimentally by binning consecutive inter spike intervals.
-
-
-
