@@ -7,7 +7,7 @@ each burst. The most commonly employed parameters are:
     \item Mean bursting rate (\(MBR\), expressed in \(bursts/min\))
     \item Burst duration (\(msec\))
     \item Inter burst interval (\(IBI\)) - it can be either start-to-start (not
-          influenced by burst duration) or end-to-start
+          influenced by burst duration) or end-to-start (influenced by burst duration)
     \item Total number of spikes in a bursting channel
     \item Percentage of random spikes
     \item Mean intra-burst frequency
@@ -20,13 +20,18 @@ In the following there is a detailed description of the main tools to characteri
 visualize bursting activity.
 
 \subsubsection{Inter Burst Interval}
-The inter burst interval (\(IBI\)) represents the burst equivalent of \(ISI\) for the spikes. Also in the case of \(IBI\) it is possible to plot an histogram, denominated \(IBIH\). Burst are defined as macro events with a specific duration, however it becomes less and less relevant as the recording period is increased, so under the hypothesis of long-term recordings (tens of minutes), it is possible to consider a burst as a single event.\\
+The inter burst interval (\(IBI\)) represents the burst equivalent of \(ISI\) for the 
+spikes. Also in the case of \(IBI\) it is possible to plot an histogram, denominated \(IBIH\). 
+Bursts are defined as macro-events with a specific duration, which, however, becomes less and 
+less relevant as the recording period increases, so that in the case of long-term recordings 
+(tens of minutes), it is possible to consider a burst as a single event.\\
 The mathematical formulation of the inter burst interval is given below:
 \begin{align*}
     IBIH(\tau)=\frac{1}{M-1}\sum_{b=1}^{M-1}\delta(t_{b+1}-t_{b}-\tau)
 \end{align*}
 with \(M\) being the total number of burst events.
-In a similar fashion, the analogous concepts of JIBI (Joint IBI) and CIBI (Cross IBI) can be defined.
+In a similar way, the analogous concepts of JIBI (Joint IBI, first row of the figure) 
+and CIBI (Cross IBI, second row of the figure) can be defined.
 \begin{figure}[H]
     \includegraphics[scale=0.2]{6_1}
     \centering
@@ -36,14 +41,14 @@ In a similar fashion, the analogous concepts of JIBI (Joint IBI) and CIBI (Cross
 The \textbf{Fano Factor (\(FF\)) dispersion} is a reliable measure of the variability of events
 (either spikes or bursts) across a given population. The \(FF\) dispersion is
 immediately obtained by computing the average number of events \(\langle{N(T)}\rangle\)
-in a time interval \(T\) (thus for each bin), together with its corresponding variance
-\(Var\{N(T)\}\):
-\begin{align*}
-    FF(T)=\frac{Var\{N(T)\}}{\langle{N(T)}\rangle}
-\end{align*}
+in a time interval \(T\), together with its corresponding variance
+\(Var[N(T)]\):
+\begin{equation*}
+    FF(T)=\frac{Var\bigl[N(T)\bigr]}{\langle{N(T)}\rangle}
+\end{equation*}
 On the other hand, by replacing the variance with the standard deviation
 \(\sigma\bigl[N(T)\bigr]\), one could compute the \textbf{Coefficient of Variation}
-\(CV\):
+\(CV\), that is a little more used:
 \begin{align*}
     CV(T)=\frac{\sigma\bigl[N(T)\bigr]}{\langle{N(T)}\rangle}
 \end{align*}
@@ -58,6 +63,6 @@ subjects, as they tend to point out differences in the bursts distribution:
 for instance, they might be used to show the different activity between two
 subjects, one with a pathological condition and the other being totally healthy.
 \begin{figure}[H]
-    \includegraphics[scale=0.35]{6_2}
+    \includegraphics[scale=0.33]{6_2}
     \centering
 \end{figure}
