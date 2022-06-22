@@ -206,44 +206,4 @@ perfectly aligned, then the activity will be blocked.
 There are structures that are physically linked (for instance, Wernicke and Broca), and there exists other regions whose connection is more blur (top level networks in the 
 cognitive processing) and here there is another kind of behavior, because signals come from very different regions and at the same time. Brain needs to be able to switch 
 among different configurations, to process different information very differently but simultaneously, and this happens thanks to brain oscillations, because all brain 
-oscillations at all frequency scales exist at the same time. 
-
-\subsection{Brain Oscillations Characterization}
-\subsubsection{The (Discrete) Fourier Transform}
-The classical tool for analyzing oscillations is the Fourier Transform. One of the major problems of using this tool is the fact that 
-it is only possible to look at the spectra of the oscillations (and so, how the amplitudes of the oscillations are distributed in the frequency domain). 
-To introduce how transient and aperiodic signals are represented in the spectral domain, the Dirac delta can be used, whereby a single non-zero value 
-in the time domain is represented by constant power across all frequencies in the frequency domain (\textit{Figure (a)}). This illustrates that power in a specific 
-frequency band does not generally correspond to a present oscillation in the time domain.\\
-Similarly, \(1/f\)-like aperiodic activity (\textit{pink noise}), which is common in neural data, shows power across all frequencies, with decreasing power for 
-higher frequencies (\textit{Figure (b)}). 
-Despite the lack of periodic activity in aperiodic time series, narrowband filtering, which imposes a sinusoidal basis, extracts components that appear to be oscillatory, 
-when filtered into canonical band ranges (\textit{Figure (c)}).
-\begin{figure}[H]
-    \includegraphics[scale=0.40]{10_8}
-    \centering
-\end{figure}
-What can be done is to concentrate the analysis in the so called \textbf{frequency peaks}. In general, the procedure is to take the spectrum, 
-to localize the point in frequency (or the frequency range) where there is the maximum amplitude, because large increases have probably some sort of oscillations. 
-Then the analysis can be focused on that specific region of the frequency spectrum.\\
-Neural oscillations display significant variations in their peak frequencies, including variation across age (Lindsley, 1939), within and between participants, 
-and across cortical locations. Alpha peak frequency, for example, is considered a stable trait marker, and is also associated with some clinical disorders, displaying, 
-for example, a slower frequency in attention-deficit hyperactivity disorder (ADHD). 
-\par\medskip
-Due to frequency variation, even if the presence of oscillations is verified, the use of canonically defined frequency ranges may still fail to accurately reflect the 
-data, as this may misestimate power of an oscillation if the spectral peak is not well captured in the canonical range. For example, a canonically defined alpha range 
-of \(8-12 Hz\) captures the peak of a \(10 Hz\) oscillation (\textit{Figure (a)}), but fails to accurately capture an \(8 Hz\) peak (\textit{Figure (b)}).
-\begin{figure}[H]
-    \includegraphics[scale=0.35]{10_9}
-    \centering
-\end{figure}
-The Fourier Transform decomposes the signal in a weighted sum of complex sinusoids:
-\begin{equation*}
-    X_k=\sum_{n=0}^{N-1} x_n\cdot e^{-\frac{i2\pi}{N}\cdot kn}
-\end{equation*}
-What does it happen if the signal is significantly non-sinusoidal? The neuronal oscillations are highly non-stationary. In this way, Fourier Transform may not 
-be the best way to look at the activity. Another possibility to characterize the properties is to look at the spectrum, to define the frequency band of interest, to filter 
-the activity there, and then go back to the time domain and quantify what is the distance that the oscillation has from the sinusoid. One possibility is to create a time-resolved 
-peak-through symmetry (or asymmetry), understanding how much these peak-through distances are different from a pure sine.
-
-\subsubsection{Wavelet Transform}
+oscillations at all frequency scales exist at the same time.
