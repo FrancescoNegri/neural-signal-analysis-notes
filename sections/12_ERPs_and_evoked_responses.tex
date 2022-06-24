@@ -1,0 +1,114 @@
+% TODO: insert images!
+\subsection{Preprocessing}
+Whenever data are recorded during an experiment, independently on the aquisition
+system, it is necessary to perform some preprocessing tasks. This is done in order to
+remove the residual noise before performing the actual analysis on the data.\\
+The steps commonly carried out during preprocessing are (not necessarily in
+this order):
+\begin{itemize}
+    \item Filtering
+    \item Down-sampling
+    \item Epoching
+    \item Cleaning
+    \item Artifacts rejection
+    \item Re-referencing (mainly related to EEG recordings) 
+\end{itemize}
+\subsubsection{Filtering}
+Filters are employed to remove unwanted frequencies, such as the \(50\,Hz\) due to
+the electrical power supply. Notice that filtering brings some issues as well, as it
+affects the overall data.\\
+Several types of filters do exist:
+\begin{itemize}
+    \item \textbf{High-pass:} remove the DC offset and slow trends in the data.
+    \item \textbf{Low-pass:} remove high-frequency noise, performing an action similar to
+    smoothing.
+    \item \textbf{Notch (a.k.a. band-stop):} remove the power line noise and its harmonics,
+    it is a sort of extremely narrow band-pass filter.
+    \item \textbf{Band-pass:} it allows only a range of frequencies and removes the others.
+    It is often obtained as a combination of high-pass and low-pass filters.
+\end{itemize}
+Some of the most important remarks about filters are reported below:
+\begin{itemize}
+    \item Generally, notch filters have very low ranges of allowed frequencies and
+    this might create artifacts and affect the signal in a negative way. Notice
+    that by increasing the range of a band-stop filter, the power of the filter itself
+    is reduced, leading to a worse removal of noise.
+    \item IIR (infinite-impulse response) filters and FIR (finite-impulse response)
+    filters are both valuable choices; however, FIR filters are commonly preferred
+    whenever the phase distortion is an issue, as they do not introduce it, wheres
+    IIR filters might. Therefore, FIR filers ensures a better phase-time relationship.
+    \item In case of band-pass filters, it is critical to properly select the
+    bandwidth of interest: in general broadband filters are preferred for neural
+    signal in a high-frequency range, especially \(>30\,Hz\), as the activity
+    is non-purely oscillatory, such as the multi-unit activity of neurons. When
+    interested in low-frequency oscillations - i.e. alpha band or theta band - it is
+    more effective to apply a narrowband filter.
+    \item Additionally, Morlet filtering is to be preferred when analysing the phase
+    of multiple signals is being investigated, as it employes narrowband filters, it
+    allows a better reconstruction of the oscillation phase.
+\end{itemize}
+\subsubsection{Down-sampling}
+After filtering, it might be useful to down-sample the signal in order to reduce
+its size, decreasing the computational load during the analysis. A critical issue to
+take into account when down-sampling the signal is the Nyquist limit, such that
+aliasing is avoided.
+\subsubsection{Epoching}
+In many types of analysis it is common to divide the signal in equally long
+non-overlapping chunks, which are denominated epochs. If these chunks are taken
+by a common type of event, then they are denominated trials. Generally:
+\begin{itemize}
+    \item \textbf{Epochs:} partitions of the signal not related to a particular event.
+    \item \textbf{Trials:} partitions of a signal referred to a specific event.
+\end{itemize}
+In both cases, the signal is divided into subsequent time windows with a fixed
+length.\\
+A noticeable issue related to epoching is that by taking a particular portion of
+the signal corresponds to multiplying the overall signal for a rectangular window.
+This introduces edges at the extremities of the time window, which possibly results
+in artifacts when filtering the epoch. Such an issue is particularly concerning when
+the selected time window is short, due to the fact that the number of edges
+(and consequently of artifacts) increases dramatically.\\
+A possible solution might consist in performing filtering before epoching, however
+in some types of analysis this might not be pratical nor feasible, therefore two
+distinct strategies exist to deal with the filtering of epochs:
+\begin{itemize}
+    \item Epochs might be created wider than the signal of interest, therefore
+    artifacts might be generated at the extremities of the epoched signal, but the
+    centered portion of the signal, the one of interest, would not be affected.
+    \item Alternatively, the epoched signal might be relicated symmetrically both
+    before and after itself (reflected signal). Then, the analysis might be performed
+    without generating artifacts on the initial epoched signal. Finally, the reflected
+    portions of the initial signal can be once again discarded.
+\end{itemize}
+\subsubsection{Cleaning}
+EEG and in general LFP recording techniques are much more prone to noise than
+invasive technologies. In particular, other physiological activites might concur
+in the noise, as they involve electrical activity as well:
+\begin{itemize}
+    \item \textbf{Blinking:} opening and closing the eyes generates clearly visible dipoles
+    in the signal. This issue is especially observable in the channels referred to
+    electrodes placed in the frontal part of the head, close to the eyes.
+    \item \textbf{Saccadic eye movements:} rectangular-shaped artifacts are often found as a
+    result of large saccades. Small saccades are generally not visible in EEG
+    recordings. These artifacts are pretty easy to be identifies, due to their
+    peculiar spatial distribution and duration.
+    \item \textbf{EMG:} muscular activity is driven by electrical signals and they are often
+    recorded by the EEG, especially when the muscles involved are the facial ones.
+    An issue related to the EMG signals is that their frequency content is very similar
+    to the one of the neural system, therefore they cannot be removed by a
+    frequency-selective filtering.
+    \item \textbf{EKG:} the electrical activity of the beating heart is larger in magnitude
+    if compared to neural signals. These artifacts are characterized by a
+    triangular shape and cannot be easily identified. Notice that also the flow of
+    blood in the brain arteries is a source of noise.
+    \item \textbf{Skin potential:} the impedance of the skin cannot be controlled.
+    \item \textbf{Blocking:} the signal amplifier saturates, therefore it is not possible
+    to properly record the signal, which instead becomes flat.
+\end{itemize}
+\subsubsection{Artifacts Rejection}
+% TODO: write
+\subsubsection{Re-referencing}
+% TODO: write
+
+\subsection{Event-Related Potentials}
+% TODO: write
