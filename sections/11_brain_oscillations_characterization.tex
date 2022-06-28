@@ -1,32 +1,24 @@
 \subsection{The (Discrete) Fourier Transform}
-The classical tool for analyzing oscillations is the Fourier Transform. One of the major problems of using this tool is the fact that 
-it is only possible to look at the spectra of the oscillations (and so, how the amplitudes of the oscillations are distributed in the frequency domain). 
-To introduce how transient and aperiodic signals are represented in the spectral domain, the Dirac delta can be used, whereby a single non-zero value 
-in the time domain is represented by constant power across all frequencies in the frequency domain (\textit{Figure (a)}). This illustrates that power in a specific 
-frequency band does not generally correspond to a present oscillation in the time domain.\\
-Similarly, \(1/f\)-like aperiodic activity (\textit{pink noise}), which is common in neural data, shows power across all frequencies, with decreasing power for 
-higher frequencies (\textit{Figure (b)}). 
-Despite the lack of periodic activity in aperiodic time series, narrowband filtering, which imposes a sinusoidal basis, extracts components that appear to be oscillatory, 
-when filtered into canonical band ranges (\textit{Figure (c)}).\\
-There is another aspect that is crucial: using the periodogram (either the standard or the modified Welch), what usually is done is to separate the signal in different time-windows of 
-a given length, to perform the \textit{fft}, for each window and then to average all of them. The time-window length is defined at the beginning of the algorithm, and then it runs across 
-all possible windows. If there is a signal that is constant in energy across time (such as a sinusoid), it's not important the duration of the window; if the signal is very different from 
-a sinusoid (that is the case of neuronal oscillations), the selectioned window acts as a low-pass filter: for this reason, there is not an optimal way to select the window length. Ideally, 
-the best way is to have a time-window that is dependent on the frequency taken into account, but this is not possible in the Fourier Analyses.
+The (Discrete) Fourier Transform is the simplest way of understanding, analyzing and quantifying the range of frequencies that exists within a signal, so that the info carried by it can be decomposed in a series of harmonics.\\
+However, there are some major problems using this tool:
+\begin{enumerate}
+    \item A spectrum in the Fourier domain is obtained, every time that the signal in time has a non-null component, even if when there are no oscillations. Considering just the power spectral density (PSD) of the signal (that describes how the amplitudes of the oscillations are distributed over the frequency domain), in fact, the DFT of a single pulse is a uniform distribution (\textit{Figure (a)}). So, in time, just one pulse is present, while in frequencies, a certain amplitude is present overall the whole domain. Therefore, the PSD could lead to the false conclusion that, since it is nonzero, then oscillations are present in time.
+    \item \(1/f\)-like aperiodic activity (\textit{pink noise}), which is common in neural data, shows power across all frequencies, which decreases at higher frequencies (\textit{Figure (b)}). Despite the lack of periodic activity, narrowband filtering, which is realized on a sinusoidal basis, extracts components that appear to be oscillatory when filtered into canonical band ranges (\textit{Figure (c)}).
 \begin{figure}[H]
     \includegraphics[scale=0.40]{11_1}
     \centering
 \end{figure}
-What can be done is to concentrate the analysis in the so called \textbf{frequency peaks}. In general, the procedure is to take the spectrum, 
-to localize the point in frequency (or the frequency range) where there is the maximum amplitude, because large increases have probably some sort of oscillations. 
+    \item Another aspect that is crucial si that using the periodogram (either the standard or the modified Welch), what usually is done is to separate the signal in different time-windows of a given length, to perform the \textit{fft}, for each window and then to average all of them. The time-window length is defined at the beginning of the algorithm, and then it runs across  all possible windows. If there is a signal that is constant in energy across time (such as a sinusoid), it's not important the duration of the window. On the other hand, if the signal is very different from a sinusoid (that is the case of neuronal oscillations), the selectioned window acts as a low-pass filter: for this reason, there is not an optimal way to select the window length. Ideally, the best way is to have a time-window that is dependent on the frequency taken into account, but this is not possible in the Fourier Analyses.
+\end{enumerate}
+\subsubsection{Frequency Bands}
+What can be done is to concentrate the analysis in the so called \textbf{frequency peaks}. In general, the procedure is to take the spectrum and localize the frequency range where there is the maximum amplitude, because large increases have probably some sort of oscillations. 
 Then the analysis can be focused on that specific region of the frequency spectrum.\\
-Neural oscillations display significant variations in their peak frequencies, including variation across age, within and between participants, 
-and across cortical locations. Alpha peak frequency, for example, is considered a stable trait marker, and is also associated with some clinical disorders, displaying, 
-for example, a slower frequency in attention-deficit hyperactivity disorder (ADHD). 
-\par\medskip 
-Due to frequency variation, even if the presence of oscillations is verified, the use of canonically defined frequency ranges may still fail to accurately reflect the 
+Since brain  rhythms have a very neatly organized frequency distribution, the frequency bands corresponding to those specific brain regions can be also used to separate the signals and look and the activity. For instance, alpha peaks are considered a stable trait marker, that can also be associated with some clinical disorders, displaying, 
+for example, a slower frequency in attention-deficit hyperactivity disorder (ADHD).\\
+However, attention must be paid when using these frequency ranges: even if the presence of oscillations is verified, the use of canonically defined frequency ranges may still fail to accurately reflect the 
 data, as this may misestimate power of an oscillation if the spectral peak is not well captured in the canonical range. For example, a canonically defined alpha range 
-of \(8-12\,Hz\) captures the peak of a \(10\,Hz\) oscillation (\textit{Figure (a)}), but fails to accurately capture an \(8\,Hz\) peak (\textit{Figure (b)}).
+of \(8-12\,Hz\) captures the peak of a \(10\,Hz\) oscillation (\textit{Figure (a)}), but fails to accurately capture an \(8\,Hz\) peak (\textit{Figure (b)}).\\
+Moreover, brain oscillations are more dependent on the subject and the system than on mathematical laws.
 \begin{figure}[H]
     \includegraphics[scale=0.35]{11_2}
     \centering
@@ -35,24 +27,24 @@ The Fourier Transform decomposes the signal in a weighted sum of complex sinusoi
 \begin{equation*}
     X_k=\sum_{n=0}^{N-1} x_n\cdot e^{-\frac{i2\pi}{N}\cdot kn}
 \end{equation*}
-What does it happen if the signal is significantly non-sinusoidal? The neuronal oscillations are highly non-stationary. In this way, Fourier Transform may not 
+But if the signal is significantly non-sinusoidal, the neuronal oscillations are highly non-stationary. In this way, Fourier Transform may not 
 be the best way to look at the activity. Another possibility to characterize the properties is to look at the spectrum, to define the frequency band of interest, to filter 
-the activity there, and then go back to the time domain and quantify what is the distance that the oscillation has from the sinusoid. One possibility is to create a \textit{time-resolved 
+the activity there, and then go back to the time domain and quantify what is the distance that the oscillation has from the sinusoid. One possibility is to create a \textbf{time-resolved 
 peak-through symmetry} (or asymmetry), understanding how much these peak-through distances are different from a pure sine.
 
 \subsubsection{Periodic and Aperiodic Components}
-The Power Spectrum of a brain signal is usually distributed following a \textit{Power-Law Distribution}, that decays as the frequency increases at the power of an \(alpha\) parameter, 
+The power spectrum of a brain signal is usually distributed following a \textbf{power-law distribution}, that decays as the frequency increases at the power of an \(alpha\) parameter, 
 that controls the slope of the decay.\\
-There are a lot of evidences that suggest that the decay depends on several physiological or patological parameters: for this reason, it is not considered as noise.
+There is a lot of evidence that suggests that the decay depends on several physiological or pathological parameters: for this reason, it is not considered as noise.
 \par\medskip
-One of the first thing to do in a Fourier-based analysis is to separate the periodic (the brain oscillations) from the aperiodic spectral components. One possibility is to use the algorithm 
+For this reason, one of the first thing to do in a Fourier-based analysis is to separate the periodic (the brain oscillations) from the aperiodic spectral components. One possibility is to use the algorithm 
 of \textit{Donoghue T. et al., 2020}, which can be explained in the following steps:
 \begin{figure}[H]
     \includegraphics[scale=0.30]{11_3}
     \centering
 \end{figure}
 \begin{itemize}
-    \item[\textbf{a)}] The PSD is first fit with an estimated aperiodic component (blue);
+    \item[\textbf{a)}] First, the PSD is fit with an estimated aperiodic component (blue);
     \item[\textbf{b)}] The estimated aperiodic portion of the signal is subtracted from the raw PSD, the residuals of which are assumed to be a mix of periodic oscillatory peaks and noise;
     \item[\textbf{c)}] The maximum (peak) of the residuals is found (orange). If this peak is above the noise threshold (dashed red line), calculated from the standard deviation of the residuals, 
     then a Gaussian (solid green line) is fit around this peak based on the peak's frequency, power and estimated bandwidth. The fitted Gaussian is then subtracted, and the process 
@@ -61,13 +53,13 @@ of \textit{Donoghue T. et al., 2020}, which can be explained in the following st
     \item[\textbf{e)}] This multi-Gaussian model is then subtracted from the original PSD from \textbf{a};
     \item[\textbf{f)}] A new fit for the aperiodic component is estimated;
     \item[\textbf{g)}] This re-fit aperiodic component is combined with the multi-Gaussian model to give the final fit;
-    \item[\textbf{h)}] The final fit (red).
+    \item[\textbf{h)}] The final fit (red) is obtained.
 \end{itemize}
 \par\medskip
 Another method to separate the aperiodic component from the periodic one is the \textbf{Irregular-Resampling Auto-Spectral Analysis (IRASA)}. This algorithm starts from the idea 
 that noise is a scale-free property of the system, while the brain oscillations are strongly dependent on the time interval of interest. IRASA resamples the time course of the activity 
 at different scales (both downsampling and upsampling), and it repeats the Fourier analysis at every different resampling factor. When there is a resampling, the peak of the oscillations 
-move, depending on the kind of resampling. Doing this for multiple times and taking the median of all possible resamplings, what remains is just the scale-free component, and so the aperiodic 
+moves, depending on the kind of resampling. Doing this for multiple times and taking the median of all possible resamplings, what remains is just the scale-free component, and so the aperiodic 
 component.
 \begin{figure}[H]
     \includegraphics[scale=0.40]{11_4}
@@ -77,39 +69,55 @@ Of course, these two systems have some drawbacks: for the first one, if the init
 some point, from a pure power-law to the noise level of the amplifier, the initial fit will be affected from the plateau, distrupting all the initial fitting.\\
 For the second method, it is foundamental to correctly select the resampling factor when there are multiple peaks of different sizes, because the broad peak requires a larger sampling factor, while 
 a smaller peak requires a smaller resamplig factor; if this is not done, the activity will be not completely separated.
+\par\medskip
+Studies have discovered that the aperiodic component carries relevant information, and that different behaviors can be extracted looking at the \(1/f\) component:
 \begin{itemize}
-\item In the study of \textit{Voytek B. et al, 2020} was found that the aperiodic exponent is linked to brain maturation: when the brain evolves from the early childhood 
-to adulthood, the aperiodic exponent usually becomes less steep. Also in the first days of life this behavior can be noticed:
+\item In the study of \textit{Voytek B. et al, 2020} was found that the aperiodic exponent is linked to \textbf{brain maturation}: when the brain evolves from the early childhood 
+to adulthood, the aperiodic exponent usually becomes less steep. This behavior can be noticed also in the first years of life.
 \begin{figure}[H]
     \includegraphics[scale=0.35]{11_5}
     \centering
 \end{figure}
-\par\medskip
-\item It was found that the aperiodic exponent is also correlated with the excitation/inhibition (\(E/I\)) balance. In a study of 2017, Richard Gao created a small model 
+\item The \(1/f\) decay is also correlated with the \textbf{excitation/inhibition (\(E/I\)) balance}. In a study of 2017, Richard Gao created a small model 
 of excitatory and inhibitory populations (that both simulated the action of pyramidal neurons). Looking separately at the excitatory and inhibitory components in 
-the PSD, it is evident that the inhibitory component has a faster decay with respect to the excitatory one: in that sense, the aperiodic component can be used as a possible 
+the PSD, it is evident that the inhibitory component has a faster decay with respect to the excitatory one: in that sense, the aperiodic component can be used as a possible
 correlation with a larger inhibitory activity.
 \begin{figure}[H]
     \includegraphics[scale=0.40]{11_6}
     \centering
 \end{figure}
 \end{itemize}
+Notice that these systems have some major drawbacks:
+\begin{enumerate}
+    \item If the initial field used to widen the spectrum is not accurate, then the whole analysis will be strongly affected. If the decay changes at some point, when the activity reaches the noise level of the amplifiers, there is nothing that can be detected, and when the flattening is long enough, the initial field will be modified by this plateau. So, one needs to pay a special attention to setting the parameters for the initial field (left figure). 
+    \item A particular accuracy must be paid also in selecting the resampling factors when there are multiple peaks of different sizes: the broad peaks require a larger sampling factor, while the thin peaks a smaller one. If this process is not done properly, the activity won't be completely separated (right figure). 
+\begin{figure}[H]
+    \includegraphics[scale=0.3]{11_7}
+    \centering
+\end{figure}
+\end{enumerate}
 
 \paragraph{PSDs Limitations}
+Using the power spectrum density can introduce some drawbacks:
 \begin{itemize}
     \item Brain oscillatory signals violate stationary requirement of Fourier-based analysis.
     \item Fourier-based spectral decomposition can tell whether an oscillation is present but not when (or where) it occurs.
 \end{itemize}
-
+\par\medskip
+Is it possible to look at time and frequency separately?
 \subsection{Short Time Fourier Transform}
-The \textit{Short Time Fourier Transform (STFT)} is another possibility to access the time-frequency decomposition.
-It consists in performing the Fourier Transform in smaller time-windows of a given length, and then look at them as a 
-2-dimensional plot. Instead of separating the signal in multiple time-windows and then average across them, the window 
-dimension is kept and all the Fourier Transforms are aligned into time bins. The larger the time bin, the better the 
+The \textbf{Short Time Fourier Transform (STFT)} is one possibility to access the time-frequency decomposition.
+It consists in performing the Fourier Transform in smaller time-windows of a given length, and then looking at them as a 
+2-dimensional plots. Instead of separating the signal in multiple time-windows and then average across them, the window 
+dimension is kept fixed and all the Fourier Transforms are aligned into time bins. The larger the time bin, the better the 
 frequency resolution but the worse the temporal resolution (for the \textit{Heisenberg Uncertainty Principle}).
+\begin{figure}[H]
+    \includegraphics[scale=0.45]{11_8}
+    \centering
+\end{figure}
 \par\medskip
 The problem of this method is that it's still Fourier-based. What can be done is to repeat the procedure for more than one 
-time-window, adding another dimension. This will increase the total computational cost and the full analysis will be very 
+time-window, adding another dimension. Anyway, this will increase the total computational cost and the full analysis will be very 
 complicated.
 
 \paragraph{Fourier Analysis Limitations}
@@ -121,3 +129,61 @@ complicated.
 \end{itemize}
 
 \subsection{Wavelet Transform}
+\subsubsection{Convolution Theorem and Wavelet Transforms}
+So, as described before, what the Fourier Transform does is filtering the signal with a sine wave for multiple sine waves changing their frequency, through a dot product or a convolution. The dot product can be interpreted mainly in two ways:
+\begin{itemize}
+    \item as a filtering process in which a filter with a given kernel is applied to the signal at multiple time instants. The most used kernels are composed of single sine waves with different frequencies.
+    \item as a time correlator between two signals (from a statistical /geometrical point of view).
+\end{itemize} 
+But this doesn't allow to separate time from frequency.
+\begin{figure}[H]
+    \includegraphics[scale=0.35]{11_9}
+    \centering
+\end{figure}
+One possibility to access the time resolution would be to filter the EEG data through a narrow temporal window. For instance, the \textit{C} window can be used: in this case a stronger correlation in the central part of the signal can be expected (the profile is similar). However, even if this window would allow a very high temporal resolution, it would also create a very broad frequency spectrum.\\
+The opposite possibility would be applying a boxcar temporal weighting, that would access a larger frequency resolution but also cause a reduced temporal resolution (\textit{Fig. D}).\\
+However, in bot cases, borders would affect negatively the whole structure. To remove this problem, a Gaussian window can be used. Multiplying it by a complex sine wave, a \textbf{Gabor wavelet} or a \textbf{Morlet wavelet} is obtained. The Gaussian function is also the best in reducing the error between temporal and spectral resolutions: high time and frequency resolutions can be accessed in a much more efficient way compared to Fourier Transforms.
+\begin{figure}[H]
+    \includegraphics[scale=0.4]{11_10}
+    \centering
+\end{figure}
+The advantage of using a Gabor function can be explained remembering that the transform of a sine is an impulse, and the one of a Gaussian is still a Gaussian. So, by performing the convolution of the Gabor wavelet and the initial signal, a filter in a very specific frequency range is obtained. The position of this filter can be controlled with the main frequency of the sine wave and its bandwidth with the variance of the Gaussian.\\
+Through the combination of multiple wavelets, the EEG signal can be decomposed into a time-filtered signal with 0 mean (right image, \textit{Fig. C}), that captures really well the sinusoidal components by increasing the amplitude of the filtered signal. 
+\subsubsection{Real Valued vs Complex Wavelets}
+The complex wavelet is not the only one that exists, but it is important for two reasons:
+\begin{enumerate}
+    \item If only real valued wavelets are considered, if the two oscillations that need to be matched are not aligned in phase, the dot product will be affected by it.
+    So, complex wavelets are more complicated, but have the advantage that for them the phase is one of the parameters. Hence, they allow a more general representation (left figure), accounting for all possible shifts. 
+    \item Complex wavelets enable also the separation of the amplitude dynamics from the phase dynamics of the signals. So, the two aspects can be analyzed separately.\\
+    Spectral coherence is dependent both on phase differences and on amplitude correlations, so when we look at an increased spectral coherence we cannot immediately deduce which factor influenced it. Analyzing the signal using complex wavelet components allows to understand whether the property that is being considered is more dependent on amplitude correlation or phase synchronization.
+\end{enumerate}
+\begin{figure}[H]
+    \includegraphics[scale=0.35]{11_11}
+    \centering
+\end{figure}
+
+\subsubsection{Frequency Scale and Resolution}
+In general, an optimal frequency range doesn't exist, unless the modulation of a specific kind of wave is considered. 
+\begin{itemize}
+    \item The min frequency is usually dictated by the experimental conditions and by the length of the data. In the resting state there is no limit to the min frequency, apart from going below \(1\,Hz\) of frequency oscillations, that requires dedicated hardware. Short windows act as high-pass filters.
+    \item The max frequency is limited by Nyquist theorem.  
+\end{itemize}
+About the frequency scale (how many and how spaced frequencies must be) there is not a fixed optimal decision either. It is usually dictated by the visualization of the results and on whether slow or fast oscillations are considered:
+\begin{itemize}
+    \item Faster rhythms require a logarithmic kind of representation (better visual resolution9.
+    \item Slower rhythms require linear, highly sampled frequencies.
+\end{itemize}
+Even a combination of the two can be used, but it would be hard to read in terms of visual results.
+\begin{figure}[H]
+    \includegraphics[scale=0.25]{11_12}
+    \centering
+\end{figure}
+
+\subsubsection{Time Scale and Resolution}
+\begin{figure}[H]
+    \includegraphics[scale=0.28]{11_13}
+    \centering
+\end{figure}
+The used kernel should be long enough to contain at least some cycles of the sine wave, but not too long to suppress all the oscillations. So, the time window of the filter needs to reach 0 in a smooth way as fast as possible, but at the same time to contain enough cycles of oscillation, because the Heisenberg uncertainty principle applies here. The number of cycles is identified as the number of peaks inside the wavelet.
+The power spectrum of the different wavelets is again a Gaussian that is centered around 0 and both reach 0 at the same time, but the variance is different in the two cases: one has a shorter frequency resolution, while the other one is broader. The three cycles wavelet gives a better time resolution, while the frequency will be smoother in a wider region. For the 7 cycle wavelet, the frequency resolution is better but the time resolution is worse.\\
+An optimal trade off for neuroscience is in the range 5-7 cycles to have accurate frequency and time resolutions.
