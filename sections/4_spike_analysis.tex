@@ -21,7 +21,7 @@ used are: Raster Plot, Spike Count, Instantaneous Firing Rate (IFR), Array-wide 
 (ISI), Joint Interspike Interval Histogram (JISI), Cross Interspike Interval Histogram
 (CISI), LvR.
 \subsubsection{Raw data multi-channel plot}
-The following plot shows the activity - i.e. voltage - recorded by 8 distinct electrodes
+The following plot shows the activity - i.e., voltage - recorded by 8 distinct electrodes
 as a function of time.
 \begin{figure}[H]
     \includegraphics[scale=0.3]{4_2}
@@ -102,7 +102,7 @@ This analysis is often employed to appreciate the inhibition or excitation proce
 neurons related to the introduction of pharmacological treatments in cell cultures.
 \subsubsection{Array-Wide Firing Rate}
 The Array-Wide Firing Rate (AWFR), often called Average Firing Rate (AFR), it is a sort of
-IFR obtained by taking into account the whole network - i.e. all the recorded channels,
+IFR obtained by taking into account the whole network - i.e., all the recorded channels,
 not just a single one. This metric is often employed in neuropharmacology, in order to
 assess the time of response to a drug.\\
 If \(M\) is the number of electrodes in the network, the AFR can be written as:
@@ -128,7 +128,7 @@ whole neural network in a determined time interval (average number of spikes div
 time duration of the acquisition).\\
 The following plot illustrates the Mean Firing Rate, indicating the average neural activity, at
 different concentrations of a brain inhibitor drug. The firing rate was computed in each phase
-with respect to the baseline - i.e. no drug - case. Then, a sigmoid was used to fit the dots
+with respect to the baseline - i.e., no drug - case. Then, a sigmoid was used to fit the dots
 in order to find when the drug is able to arrive at \(50\%\) of its possible effect.
 \begin{equation*}
     \frac{MFR(c_i)}{MFR(c_0)}\cdot100
@@ -275,7 +275,7 @@ The following image shows these spike generation patterns, in this case employed
     \includegraphics[scale=0.35]{4_16}
     \centering
 \end{figure}
-First, let's set an assumption: the firing rate - i.e. the average number
+First, let's set an assumption: the firing rate - i.e., the average number
 of fired spikes in a unit of time - is assumed to be constant, thus
 \begin{equation*}
     r(t)=r=\frac{n}{T}
@@ -397,5 +397,5 @@ Poisson distribution, intended as the chance to generate a spike event after a t
     =\frac{1}{\overline{t}}e^{-\frac{t}{\overline{t}}}
 \end{align*}
 with \(t=\tau\) and \(\frac{1}{\overline{t}}=r=AFR\).\\
-In general, the function \(p(t)\) - i.e. the ISI histogram - is obtained
+In general, the function \(p(t)\) - i.e., the ISI histogram - is obtained
 experimentally by binning consecutive inter spike intervals.

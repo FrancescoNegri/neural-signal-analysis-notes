@@ -71,7 +71,7 @@ of the decay.\\
 There is a lot of evidence suggesting the decay depends on several physiological or pathological parameters:
 for this reason, it is not considered as noise.\\
 Therefore, one of the first things to do in a Fourier-based analysis is to separate the periodic
-- i.e. the brain oscillations - from the aperiodic spectral components. One way is to use the
+- i.e., the brain oscillations - from the aperiodic spectral components. One way is to use the
 algorithm proposed by \textit{Donoghue T. et al. (2020)}, summarized in the following steps:
 \begin{figure}[H]
     \includegraphics[scale=0.35]{11_3}
@@ -155,7 +155,7 @@ Is there a way to obtain a joint time-frequency representation?
 \subsection{Short-Time Fourier Transform}
 The \textbf{Short-Time Fourier Transform} (STFT) is one possibility to access the time-frequency decomposition.
 It consists in performing the Fourier Transform for smaller time-windows of a fixed length, and then looking
-at them as a 2D plot (frequency vs. time), where the third dimension - i.e. the amplitude - is given by a
+at them as a 2D plot (frequency vs. time), where the third dimension - i.e., the amplitude - is given by a
 colormap. Instead of separating the signal in multiple time windows and then averaging across them, the window
 dimension is kept fixed and all the Fourier Transforms are aligned into time bins. The larger the time bin,
 the better the frequency resolution, but at the expense of a worse temporal resolution (for the
@@ -193,7 +193,7 @@ representation cannot be obtained.
 One possibility to access the time resolution would be to filter the EEG data through a narrow temporal window.
 For instance, the \textbf{C} window presented in the picture above can be used: in this case a stronger
 correlation in the central part of the signal can be expected (the profile is similar). However, even if this
-window would allow a very high temporal resolution, it would also create a very broad frequency spectrum - i.e.
+window would allow a very high temporal resolution, it would also create a very broad frequency spectrum - i.e.,
 low frequency resolution -.\\
 The opposite possibility would be applying a boxcar temporal weighting such as \textbf{D}, that would access a
 larger frequency resolution but also cause a reduced temporal resolution.\\
@@ -241,7 +241,7 @@ considered.
     of frequency oscillations, that requires dedicated hardware. Short windows act as high-pass filters.
     \item \textbf{Maximum frequency:} limited by the Nyquist theorem.
 \end{itemize}
-About the frequency scale - i.e. how many and how spaced frequencies must be - there is no fixed optimal
+About the frequency scale - i.e., how many and how spaced frequencies must be - there is no fixed optimal
 decision either. It is usually dictated by the visualization of the results and on whether slow or fast
 oscillations are considered:
 \begin{itemize}

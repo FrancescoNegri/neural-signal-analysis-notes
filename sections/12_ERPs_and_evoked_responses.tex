@@ -36,7 +36,7 @@ Some of the most important remarks about filters are:
           bandwidth of interest: in general broadband filters are preferred for neural
           signal in a high-frequency range, especially \(>30\,Hz\), as the activity
           is non-purely oscillatory, such as the multi-unit activity of neurons. When
-          interested in low-frequency oscillations - i.e. alpha band or theta band - it is
+          interested in low-frequency oscillations - i.e., alpha band or theta band - it is
           more effective to apply a narrowband filter (notch).
     \item Generally, notch filters have very low ranges of allowed frequencies and
           this might create artifacts and affect the signal in a negative way. Notice
@@ -50,7 +50,7 @@ Some of the most important remarks about filters are:
 After filtering, it might be useful to down-sample the data in order to reduce their size, decreasing
 the computational load during the analysis. A critical issue to
 take into account when down-sampling the signal is the Nyquist limit, such that
-aliasing is avoided (i.e., the overlapping of subsequent harmonics).
+aliasing is avoided - i.e., the overlapping of subsequent harmonics -.
 \subsubsection{Epoching}
 In many types of analysis it is common to divide the signal in equally long
 non-overlapping chunks, which are denominated epochs. If these chunks are taken
@@ -132,7 +132,7 @@ independent sources of a signal. In the EEG case, ICA works as a spatial filter,
 separate the signal sources from a spatial point of view. Notice that the source separation
 is performed by looking at the variance of the signal collected by all of the electrodes.
 The signal from a generic electrode \(n\) in a set of \(N\) electrodes can be seen as the
-sum of \(N\) independent components, each with a different weight - i.e. contributing in a
+sum of \(N\) independent components, each with a different weight - i.e., contributing in a
 different manner to the overall recorded signal -:
 \begin{equation*}
     n\text{-th electrode} = \sum_{i=1}^N w_{ni}\cdot{IC_i}
@@ -152,7 +152,7 @@ components themselves.
 \end{figure}
 \paragraph{ICA phase distortion} The Independent Component Analysis is a linear operator, thus
 it is supposed not to distort or edit the phase of the signal. However, there is evidence
-suggesting that ICA may affect the phase of data in supposedly clean - i.e. without artifacts -
+suggesting that ICA may affect the phase of data in supposedly clean - i.e., without artifacts -
 EEG recordings. In particular, this represents an issue if:
 \begin{itemize}
     \item \textbf{The number of recording channels is low:} if the number of channels is particularly
@@ -163,7 +163,7 @@ EEG recordings. In particular, this represents an issue if:
     \item \textbf{Inappropriate selection of artifactual components:} the components believed to
           contain artifacts are misjudged.
 \end{itemize}
-Let's point out once more that spatial filters - i.e. ICA - can change the phase relationship
+Let's point out once more that spatial filters - i.e., ICA - can change the phase relationship
 between two channels. This is not an issue in absolute terms, however it is critical to
 properly select the components to attenuate, as the goal is to enhance the SNR of the features
 of interest, while attenuating noise and artifacts.
@@ -188,7 +188,7 @@ subject.
 Obviously, the electrodes must be symmetrically positioned on the head, and the activities on the two sides
 must be weighted equally, otherwise the noise, which is common, would not be cancelled out.
 For this reason, the amplifiers employed in EEG recordings usually work through common-mode rejection
-- i.e. an amplifier ability to individuate the noise common to different signals and remove
+- i.e., an amplifier ability to individuate the noise common to different signals and remove
 it -, which unluckily decades as the impedance increases. Therefore, it is fundamental to
 have a low impedance between the recording electrodes and the subject skin: this is achieved
 by enhancing their coupling via a conductive gel.\\
@@ -212,7 +212,7 @@ recorded. In this case, two distinct referencing approaches exist:
     \item \textbf{Laplacian spatial filter:} this electrodes scheme is preferred when a high-density
           EEG recording is performed. The reference for a generic electrode is taken as a weighted
           sum of the activity recorded by the nearby electrodes. This allows to obtain a
-          well-localized activity. Notice that different shapes of the kernel - i.e. different
+          well-localized activity. Notice that different shapes of the kernel - i.e., different
           neighbourhoods of electrodes - can be selected.
 \end{itemize}
 
@@ -232,14 +232,14 @@ ERPs are a widely-spread way to analyse EEG evoked responses, which are the resp
 when given a stimulus. Possible stimuli are electrical perturbations, transcranial magnetic stimulations
 or sensory stimulations.\\
 ERPs is a sort of black-box approach, as only the relationship between
-input - i.e. the stimulus - and the output - i.e. the evoked potentials - is of interest.
+input - i.e., the stimulus - and the output - i.e., the evoked potentials - is of interest.
 ERPs are based on the hypothesis that the brain activity is event-related, thus the activity
 observed after the stimulation is caused by the stimulus itself. As a consequence, everything
 not caused by the stimulation is not replicated across time and can be considered noise.\\
 Several trial of the same stimulation are recorded, each one containing a temporal mixture
 of signal and noise: signal is assumed to be consistent across trials referred to the same
 stimulus. Thus, noise can be removed by averaging all the trials together. This can be done
-as noise is assumed to be uncorrelated - i.e. it has no statistical meaning, thus it is random -
+as noise is assumed to be uncorrelated - i.e., it has no statistical meaning, thus it is random -
 and centered around zero.
 \begin{figure}[H]
     \centering
@@ -250,7 +250,7 @@ peaks, while oscillating around zero. The time and amplitude of the peaks is usu
 to behavioural performances. For instance, the positive peak at \(300\,ms\) might be associated
 to the active visual perception of a stimulus.\\
 Thus, a correlation between peaks features, such as temporal displacement and amplitudes,
-and events - i.e. stimuli - is usually investigated.\\
+and events - i.e., stimuli - is usually investigated.\\
 Despite their effectiveness, ERPs present some limitations and drawbacks. First of all, an
 ERP does not provide any information concerning the frequency content of the response.
 Moreover, the high-frequency components of the response are removed by the smoothing effect
@@ -260,7 +260,7 @@ Wavelet Transform: in general the transform is applied to each trial and then th
 are averaged, obtaining the so-called Event-Related Spectrum (ERS). It is then possible
 to remove the baseline activity of the brain from the joint time-frequency representation,
 producing a time-frequency representation exclusively for response to a perturbation
-- i.e. the stimulus -, denominated \textbf{Event-Related Spectral Perturbation (ERSP)}, which is
+- i.e., the stimulus -, denominated \textbf{Event-Related Spectral Perturbation (ERSP)}, which is
 better described in the following pages.
 Notice that, for what has just been said, a time-frequency representation is less significant
 for spontaneous activity, while it is considerably informative in the presence of stimuli.
@@ -288,7 +288,7 @@ recording sites during an ERP by looking at the active channels.
 \subsubsection{Baseline Normalization}
 The \textbf{baseline} is defined as the basal or spontaneous
 activity recorded by a channel before the occurring of a stimulus. In many cases it might
-be useful to compare the activity before - i.e. the baseline activity - and after - i.e. the
+be useful to compare the activity before - i.e., the baseline activity - and after - i.e., the
 evoked response - a stimulus to understand how the neural system is affected by it.\\
 In order to remove the baseline component from the evoked response, it has been suggested to
 perform the so called baseline normalization, consisting in removing the baseline contribution

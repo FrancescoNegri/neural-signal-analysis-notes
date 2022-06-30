@@ -8,7 +8,7 @@ The simplest way of looking at EEG evoked responses is through \textbf{Event-Rel
 temporal mixture of signal and noise: signal is likely to be similar across trials,
 while noise fluctuates.\\
 Thus, it would be better to analyze the data without considering noise. There are
-different ways to reduce its impact on the recording - i.e. increase the SNR -:
+different ways to reduce its impact on the recording - i.e., increase the SNR -:
 \begin{itemize}
     \item Averaging the amplitude of the signal across trials (and keeping the time
           dimension), noise cancels out and the ERPs remain.
@@ -36,7 +36,7 @@ spectrum while keeping the phase spectrum coherent. This means that the spatial
 relationship of pixels luminance is contained in the phase rather than in the
 amplitude. Therefore, by destroying the amplitude of a signal but keeping the phase
 intact still gives the chance to reconstruct much of the information of the data.\\
-Hence, considering a 1D signal - i.e. looking at the time variations - the phase
+Hence, considering a 1D signal - i.e., looking at the time variations - the phase
 contains the dynamic response of the system more than just the amplitude.
 \textbf{Phase coherence} (or synchronization) is a physiological mechanism to promote
 communication across brain network.\\
@@ -47,7 +47,7 @@ One possibility to do it is by using the so-called \textbf{Inter-Trial Phase Coh
 In evoked activity there is the baseline activity and a slow amplitude response (in
 some of the channels). An analysis can be realized to understand if the event at some
 point triggers a coherent phase response at single sites in the network.
-To do it the ERP can be used, but it only finds increases in amplitude - i.e. tells
+To do it the ERP can be used, but it only finds increases in amplitude - i.e., tells
 when the neurons that are below the electrode are synchronized (within the single
 event) -. A better option is the ITPC, as it is able to tell when the phase of the
 system resets the ongoing oscillations in response to a given stimulus.

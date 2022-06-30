@@ -88,7 +88,7 @@ So far, many algorithms have been developed but none of them has emerged as the 
 They can be classified into 3 groups:
 \begin{itemize}
     \item \textbf{Thresholding}: it is assumed that spikes peak-to-peak amplitude is larger than the noise level.
-    \item \textbf{Energy operator}: non-linear energy operator accentuating high frequency content, i.e. spikes.
+    \item \textbf{Energy operator}: non-linear energy operator accentuating high frequency content, i.e., spikes.
     \item \textbf{Template matching}: it is an approach based on the spike shape, involving Spike Sorting.
 \end{itemize}
 \subsubsection{Thresholding algorithms}
@@ -141,7 +141,7 @@ in a single window (typically at the window borders).
 This method solves the undersampling issue. \\ The operation of PTSD differs from the previous
 algorithms in a variety of aspects: first and foremost, the presence of a differential threshold
 instead of a unipolar one; moreover, in addition to \(RP\), there is also another time interval
-called \textbf{Peak Lifetime Period} \(PLP\) (i.e. the maximum duration that a spike can have).
+called \textbf{Peak Lifetime Period} \(PLP\) - i.e., the maximum duration that a spike can have -.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{2_10.png}
@@ -150,7 +150,7 @@ Proceeding in order, the algorithm searches for a relative maximum/minimum (\(1^
 Relative Maximum/Minimum): if it finds a maximum then it will search the signal for
 the nearest minimum (\(2^\circ\) \(RMM\)) within the \(PLP\) window, while if it finds a minimum it will proceed
 in the same way but looking for a maximum. If the difference between the first \(RMM\) and the second \(RMM\)
-(i.e. the peak-to-peak amplitude of the spike), exceeds the Differential Threshold (\(DT\)),
+- i.e., the peak-to-peak amplitude of the spike -, exceeds the Differential Threshold (\(DT\)),
 then the spike is identified (\textit{Fig. a}). In case the second \(RMM\) falls at the end of the \(PLP\) window,
 another time window called \textbf{overshoot} is used to find the correct peak value (\textit{Fig. b}). The \(DT\) is
 always calculated as the standard deviation of the noise multiplied by a coefficient.\\
@@ -184,8 +184,8 @@ The \(NE\) of a signal \(x(n)\) is defined as:
 \end{align*}
 The NEO is defined for each sample \(i\) and computed within a
 window \(W\) centered in \(i\).\\
-As a consequence, the NEO is large only when the signal is both high in power - i.e. \(x^2(n)\) is large -
-and high in frequency - i.e. \(x(n)\) is large while \(x(n+1)\) and \(x(n-1)\) are small-.
+As a consequence, the NEO is large only when the signal is both high in power - i.e., \(x^2(n)\) is large -
+and high in frequency - i.e., \(x(n)\) is large while \(x(n+1)\) and \(x(n-1)\) are small-.
 Since a spike is characterized by localized high frequencies and an increase in instantaneous energy,
 this method has an obvious advantage over methods that look only at an increase in signal energy or
 amplitude without regarding the frequency.\\
