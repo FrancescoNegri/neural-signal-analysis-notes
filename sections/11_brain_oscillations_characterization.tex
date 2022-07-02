@@ -3,19 +3,19 @@ The (Discrete) Fourier Transform (DFT) is the simplest way of understanding, ana
 quantifying the range of frequencies that exists within a signal, such that the information
 carried by it can be decomposed in a series of harmonics.\\
 However, there are some major problems by using this tool:
-\begin{enumerate}
+\begin{itemize}
     \item A spectrum in the Fourier domain is obtained every time the signal in the time domain
           has a non-null component, even if there are no oscillations. Considering just the Power
           Spectral Density (PSD) of the signal, which describes how the amplitudes of the
           oscillations are distributed over the frequency domain, the DFT of a single pulse is a
-          uniform distribution. Hence, in the time domain just one pulse is present, while in the
+          uniform distribution (\textit{Fig. a}). Hence, in the time domain just one pulse is present, while in the
           frequency domain a certain amplitude is present on the whole domain. Therefore, the PSD
           could lead to the false conclusion that, since it is non-zero, then oscillations are
           present in time.
     \item \(1/f\)-like aperiodic activity (\textit{pink noise}), which is common in neural data,
           shows power across all frequencies, which decreases at higher frequencies. Despite the lack
           of periodic activity, narrowband filtering, which is realized on a sinusoidal basis, extracts
-          components that appear to be oscillatory when filtered into canonical band ranges.
+          components that appear to be oscillatory when filtered into canonical band ranges (\textit{Fig. b and c}).
           \begin{figure}[H]
               \includegraphics[scale=0.42]{11_1}
               \centering
@@ -30,7 +30,7 @@ However, there are some major problems by using this tool:
           for this reason there is not an optimal way to select the window length. Ideally, the best strategy
           is to have a time-window that is dependent on the frequency taken into account, but this is not possible
           in the Fourier Analysis.
-\end{enumerate}
+\end{itemize}
 \subsubsection{Frequency Bands}
 What can be done is to concentrate the analysis in the so called \textbf{frequency peaks}.
 In general, the procedure is to take the spectrum and localize the frequency range where
@@ -78,7 +78,7 @@ algorithm proposed by \textit{Donoghue T. et al. (2020)}, summarized in the foll
     \centering
 \end{figure}
 \begin{itemize}
-    \item[\textbf{a.}] First, the PSD is fit with an estimated aperiodic component (blue).
+    \item[\textbf{a.}] First, the PSD is fitted with an estimated aperiodic component (blue).
     \item[\textbf{b.}] The estimated aperiodic portion of the signal is subtracted from the raw PSD, the
         residuals of which are assumed to be a mix of periodic oscillatory peaks and noise.
     \item[\textbf{c.}] The maximum peak of the residuals is found (orange). If this peak is above the noise
@@ -106,6 +106,21 @@ scale-free component, thus the aperiodic component itself.
     \includegraphics[scale=0.55]{11_4}
     \centering
 \end{figure}
+Notice that these systems have some major drawbacks:
+\begin{enumerate}
+    \item If the initial field used to widen the spectrum is not accurate, then the whole analysis will be
+          strongly affected by it. If at some point the decay changes its shape, as soon as the activity
+          reaches the noise level of the amplifiers there is nothing that can be detected and, when the
+          flattening is long enough, the initial field will be modified by this plateau. Hence, one needs to
+          pay great attention to setting the parameters for the initial fitting.
+    \item A particular accuracy must be paid also in selecting the resampling factors when there are multiple
+          peaks of different sizes: the broad peaks require a larger sampling factor, while the thin peaks a
+          smaller one. If this process is disregarded, the activity won't be completely separated.
+          \begin{figure}[H]
+              \includegraphics[scale=0.35]{11_7}
+              \centering
+          \end{figure}
+\end{enumerate}
 Studies have shown that the aperiodic component carries relevant information and that different behaviours
 can be extracted by looking at the \(1/f\) component:
 \begin{itemize}
@@ -128,23 +143,8 @@ can be extracted by looking at the \(1/f\) component:
               \centering
           \end{figure}
 \end{itemize}
-Notice that these systems have some major drawbacks:
-\begin{enumerate}
-    \item If the initial field used to widen the spectrum is not accurate, then the whole analysis will be
-          strongly affected by it. If at some point the decay changes its shape, as soon as the activity
-          reaches the noise level of the amplifiers there is nothing that can be detected and, when the
-          flattening is long enough, the initial field will be modified by this plateau. Hence, one needs to
-          pay great attention to setting the parameters for the initial fitting.
-    \item A particular accuracy must be paid also in selecting the resampling factors when there are multiple
-          peaks of different sizes: the broad peaks require a larger sampling factor, while the thin peaks a
-          smaller one. If this process is disregarded, the activity won't be completely separated.
-          \begin{figure}[H]
-              \includegraphics[scale=0.35]{11_7}
-              \centering
-          \end{figure}
-\end{enumerate}
 \subsubsection{PSDs Limitations}
-By employing the Power Spectrum Density, some issues are introduced:
+By employing the Power Spectral Density, some issues are introduced:
 \begin{itemize}
     \item Brain oscillatory signals violate the stationary signal requirement of Fourier-based analysis.
     \item Fourier-based spectral decomposition can tell whether an oscillation is present or not, but
@@ -198,8 +198,8 @@ low frequency resolution -.\\
 The opposite possibility would be applying a boxcar temporal weighting such as \textbf{D}, that would access a
 larger frequency resolution but also cause a reduced temporal resolution.\\
 However, in bot cases borders would affect negatively the whole structure. To remove this problem, a Gaussian
-window can be used. Multiplying it by a complex sine wave, a \textbf{Gabor wavelet} or a
-\textbf{Morlet wavelet} is obtained.
+window can be used. As a matter of fact, multiplying a Gaussian window by a complex sine wave, a 
+\textbf{Gabor Wavelet} or a \textbf{Morlet Wavelet} is obtained.
 \begin{figure}[H]
     \includegraphics[scale=0.4]{11_10}
     \centering
@@ -219,7 +219,7 @@ The complex wavelet is not the only one that exists, but it is important for two
 \begin{enumerate}
     \item If only real-valued wavelets are considered, if the two oscillations that need to be matched are not
           aligned in phase, the dot product will be affected by it. Hence, complex wavelets are more
-          complicated, but have the advantage that for them the phase is one of the parameters. Thus, they
+          complicated, but have the advantage that the phase is one of the parameters, thus they
           allow a more general representation, accounting for all possible shifts.
     \item Complex wavelets enable also the separation of the amplitude dynamics from the phase dynamics of the
           signals, such that the two aspects can be analyzed separately.\\
@@ -258,7 +258,6 @@ The selected kernel should be long enough to contain at least some cycles of the
 to suppress all the oscillations. Therefore, the time window of the filter needs to reach 0 in a smooth way
 as fast as possible, but at the same time to contain enough cycles of oscillation, because the Heisenberg
 Uncertainty Principle applies here.
-resolutions.
 \begin{figure}[H]
     \includegraphics[scale=0.3]{11_13}
     \centering
