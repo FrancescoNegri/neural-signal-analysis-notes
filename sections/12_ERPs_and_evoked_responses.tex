@@ -29,14 +29,14 @@ Some of the most important remarks about filters are:
 \begin{itemize}
     \item IIR (infinite-impulse response) filters and FIR (finite-impulse response)
           filters are both valuable choices; however, FIR filters are commonly preferred
-          whenever the phase distortion is an issue, as they do not introduce it, wheres
+          whenever the phase distortion is an issue, as they do not introduce it, whereas
           IIR filters might. Therefore, FIR filters ensure a better phase-time relationship.
     \item In case of band-pass filters, it is critical to properly select the
           bandwidth of interest: in general broadband filters are preferred for neural
           signal in a high-frequency range, especially \(>30\,Hz\), as the activity
           is non-purely oscillatory, such as the multi-unit activity of neurons. When
           interested in low-frequency oscillations - i.e., alpha band or theta band - it is
-          more effective to apply a narrowband filter (notch).
+          more effective to apply a narrowband filter.
     \item Generally, notch filters have very low ranges of allowed frequencies and
           this might create artifacts and affect the signal in a negative way. Notice
           that by increasing the range of a band-stop filter, the power of the filter itself
@@ -91,7 +91,7 @@ distinct strategies exist to deal with the filtering of epochs:
           \end{figure}
 \end{itemize}
 \subsubsection{Cleaning}
-EEG and in general LFP recording techniques are much more prone to noise than
+EEG, and in general LFP recording techniques, are much more prone to noise than
 invasive technologies. In particular, other physiological activities might concur
 in the noise, as they involve electrical activity as well, hence often they cannot be removed or isolated.
 \begin{figure}[H]
@@ -104,7 +104,7 @@ in the noise, as they involve electrical activity as well, hence often they cann
           electrodes placed in the frontal part of the head, close to the eyes.
     \item \textbf{Saccadic eye movements:} rectangular-shaped artifacts are often found as a
           result of large saccades. Small saccades are generally not visible in EEG
-          recordings. These artifacts are pretty easy to be identifies, due to their
+          recordings. These artifacts are pretty easy to be identified, due to their
           peculiar spatial distribution and duration.
     \item \textbf{EMG:} muscular activity is driven by electrical signals and they are often
           recorded by the EEG, especially when the muscles involved are the facial ones.
