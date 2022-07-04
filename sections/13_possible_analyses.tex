@@ -4,7 +4,7 @@ Doing a LFP analysis of our data, we have the possibility to look at
 stimuli, that can be either electrical activities or exogenous stimuli like visual
 movements.\\
 The simplest way of looking at EEG evoked responses is through \textbf{Event-Related
-    Potential}. When a stimulation is provided to the system, each trial contains a
+    Potentials}. When a stimulation is provided to the system, each trial contains a
 temporal mixture of signal and noise: signal is likely to be similar across trials,
 while noise fluctuates.\\
 Thus, it would be better to analyze the data without considering noise. There are
@@ -17,7 +17,7 @@ different ways to reduce its impact on the recording - i.e., increase the SNR -:
               \includegraphics[scale=0.5]{13_1}
           \end{figure}
     \item Another way is to decompose the activity in a joint time-frequency
-          representation and then to analyze what is the activation in terms of
+          representation and then analyze what is the activation in terms of
           time dynamics of the amplitude and how it changes across different frequency
           ranges.
           \begin{figure}[H]
@@ -25,8 +25,8 @@ different ways to reduce its impact on the recording - i.e., increase the SNR -:
               \includegraphics[scale=0.35]{13_2}
           \end{figure}
 \end{itemize}
-These measures represent amplitude/power modulations, but what about phase? To
-understand the importance of the phase let's consider a simple image.
+These measures represent amplitude (a.k.a. power) modulations, but what about phase? To
+understand the importance of phase let's consider a simple image.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.45]{13_3}
@@ -35,15 +35,15 @@ The bigger figure is obtained from the smaller one after randomization of the am
 spectrum while keeping the phase spectrum coherent. This means that the spatial
 relationship of pixels luminance is contained in the phase rather than in the
 amplitude. Therefore, by destroying the amplitude of a signal but keeping the phase
-intact still gives the chance to reconstruct much of the information of the data.\\
+intact still gives the chance to reconstruct much of the information in the data.\\
 Hence, considering a 1D signal - i.e., looking at the time variations - the phase
 contains the dynamic response of the system more than just the amplitude.
 \textbf{Phase coherence} (or synchronization) is a physiological mechanism to promote
-communication across brain network.\\
+communication across the brain network.\\
 The capability to separate the phase from the amplitude is important to run analyses
 and make inferences.
 One possibility to do it is by using the so-called \textbf{Inter-Trial Phase Coherence}
-(ITPC) that measures the phase response of a neuronal ensemble to a certain stimulus.
+(ITPC) that measures the phase response of a neuronal ensemble given a certain stimulus.
 In evoked activity there is the baseline activity and a slow amplitude response (in
 some of the channels). An analysis can be realized to understand if the event at some
 point triggers a coherent phase response at single sites in the network.
@@ -70,9 +70,9 @@ trials are realized, as can be observed in the following image:
 \end{figure}
 One vector for each trial is plotted and then the resultant is taken: if there is a
 preferred phase direction, the resultant vectors are not uniformly distributed on the
-unit cycle (\textit{Fig. A}), while the distribution tends towards this direction.
-On the other hand, if there is no causal effect on the event towards the activity
-(\textit{Fig. C}), the phase angles are uniformly distributed on the unit cycle and
+unit cycle, while the distribution tends towards this direction.
+On the other hand, if there is no causal effect on the event towards the activity,
+the phase angles are uniformly distributed on the unit cycle and
 the resultant vector will be very small.
 
 \subsection{Connectivity}
@@ -116,7 +116,7 @@ specific directional effects or to an underlying structural model.
 \end{figure}
 It may be viewed as the union of structural and functional connectivities: it
 describes networks of directional and causal effects (it is not a statistical property).
-It is generaaly measured by intervention protocols: causal effects can in fact be
+It is generally measured by intervention protocols: causal effects can in fact be
 inferred through systematic perturbations of the system or, since causes must precede
 effects in time, through time series analysis. One possible way is to look at the
 elicited responses across the whole network, given that stimulations are applied to
@@ -126,7 +126,7 @@ all the electrodes.
     \centering
     \includegraphics[scale=0.45]{13_8}
 \end{figure}
-Brain network is fast-evolving in time and slowly-changing in structure connections.
+The brain network is fast-evolving in time and slowly-changing in structure connections.
 There is a balance in the brain between \textbf{functional integration} and
 \textbf{functional segregation}, such that there are regions tightly connected
 together and modules where the activity of distinct brain regions is more correlated
@@ -146,7 +146,7 @@ Spectral coherency is defined as:
 \begin{equation*}
     C_{xy} = \frac{s_{xy}(f)}{\sqrt{s_{xx}(f)s_{yy}(f)}}
 \end{equation*}
-where \(s\) is the Fourier spectrum (fft) of the signal.
+where \(s\) is the Fourier spectrum of the signal.
 Spectral coherence is computationally expensive, therefore it is common to down-sample
 the data before performing it.\\
 Notice that by looking at the connectivity from a spikes-scale point of view,
@@ -172,24 +172,24 @@ Since \(C_{xy}\) is a complex value, there are two possible ways to look at it:
 A problem of \(C_{xy}\) is that it includes information on both phase synchronization
 and amplitude correlation. However, to better analyze either the phase or the
 amplitude, the signal can be decomposed using a Morlet transform.\\
-From the decomposition, the phase synchronization or \textbf{phase locking value} can
+From this decomposition, the phase synchronization or \textbf{phase locking value} can
 be obtained:
 \begin{equation*}
     PLV_{xy}=\biggl|\frac{1}{n}\sum_{t=1}^ne^{j(\phi_x(t)-\phi_y(t)}\biggr|
 \end{equation*}
 This measure is very similar to the ITPC, even if the PLV is an average across time,
-whereas the ITPS is across trials. However, their meaning is the same: if two channels
+whereas the ITPC is across trials. However, their meaning is the same: if two channels
 have a constant time relation (lag), this is reflected in a constant phase difference
 measured as the resultant vector of the phase distribution along the unit circle of
 all the possible phase angles.\\
-Therefore, by looking at the time course there can be a high PLV whenever the two
+Therefore, by looking at the time course there is a high PLV whenever the two
 activities are well synchronized, on the contrary, a low PLV is observed for very
 different signals across channels.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{13_12}
 \end{figure}
-\paragraph{How to assess significance of coupling?}
+\paragraph{How to assess the significance of coupling?}
 At this point, it is important to understand if the obtained results are significant
 or not.\\
 A classical statistical analysis cannot be done, because every possible measure will
