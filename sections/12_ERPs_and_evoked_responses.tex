@@ -13,7 +13,7 @@ The steps commonly carried out during preprocessing are (not necessarily in this
 \end{itemize}
 \subsubsection{Filtering}
 Filters are employed to select specific ranges of the signal or to remove unwanted frequencies,
-such as the one at \(50\,Hz\), related to the electrical power supply. When filtering, it is
+such as the \(50\,Hz\) one, related to the electrical power supply. When filtering, it is
 necessary to be careful, since it may bring some issues as well, as it affects the overall
 data.\\
 Several types of filters exist:
@@ -36,13 +36,13 @@ Some of the most important remarks about filters are:
           signal in a high-frequency range, especially \(>30\,Hz\), as the activity
           is non-purely oscillatory, such as the multi-unit activity of neurons. When
           interested in low-frequency oscillations - i.e., alpha band or theta band - it is
-          more effective to apply a narrowband filter.
+          more effective to apply a narrow-band filter.
     \item Generally, notch filters have very low ranges of allowed frequencies and
           this might create artifacts and affect the signal in a negative way. Notice
           that by increasing the range of a band-stop filter, the power of the filter itself
           is reduced, leading to a worse removal of noise.
     \item Additionally, Morlet filtering is to be preferred when analysing the phase
-          of multiple signals, as it employs narrowband filters, that allow a better reconstruction
+          of multiple signals, as it employs narrow-band filters, that allow a better reconstruction
           of the oscillation phase.
 \end{itemize}
 \subsubsection{Down-sampling}
@@ -66,12 +66,12 @@ length.
 \end{figure}
 A noticeable issue related to epoching is that taking a particular portion of
 the signal corresponds to multiplying the overall signal for a rectangular window.
-This introduces edges at the boundaries of the time window, which possibly results
+This introduces edges at the boundaries of the time window, which possibly result
 in artifacts when filtering the epoch. This issue is particularly concerning when
 the selected time window is short, due to the fact that the number of edges
 (and consequently of artifacts) increases dramatically.
 The optimal solution would consist in performing filtering before epoching. However,
-in some types of analysis this might not be practical nor feasible, therefore two
+in some types of analysis this might neither practical nor feasible, therefore two
 distinct strategies exist to deal with the filtering of epochs:
 \begin{itemize}
     \item Epochs might be created wider than the signal of interest, so that
@@ -123,8 +123,8 @@ in the noise, as they involve electrical activity as well, hence often they cann
 \subsubsection{Artifacts Rejection}
 When dealing with artifacts, it is not always easy to identify them correctly, especially in
 an automatized way. As a matter of fact, nowadays visual detection is usually still preferred.
-However, even though visual identification of artifacts works well, it is extremely time
-consuming and requires well-trained researchers.\\
+However, even though visual identification of artifacts works well, it is extremely time-consuming
+and requires well-trained researchers.\\
 On the other hand, Independent Component Analysis (ICA) has
 been suggested as a valid tool in identifying artifacts, as it enables to find the
 independent sources of a signal. In the EEG case, ICA works as a spatial filter, trying to
@@ -169,8 +169,8 @@ of interest, while attenuating noise and artifacts.
 \subsubsection{Referencing}
 EEG signals are voltage differences between a specific point on the subject head and another
 reference point. It is critical to select a proper positioning of the electrodes to have a
-meaningful recording. The \textbf{reference} might be virtually any, nonetheless it is selected a
-location displaying an activity similar to the once recorded by scalp electrodes.
+meaningful recording. The \textbf{reference} might be virtually any, nonetheless a location
+displaying an activity similar to the once recorded by scalp electrodes is selected.
 The most common locations for the reference electrode are:
 \begin{itemize}
     \item Earlobes
@@ -184,7 +184,7 @@ subject.
     \centering
     \includegraphics[scale=0.35]{12_6}
 \end{figure}
-Obviously, the electrodes must be symmetrically positioned on the head, and the activities on the two sides
+Obviously, the electrodes must be symmetrically positioned on the head and the activities on the two sides
 must be weighted equally, otherwise the noise, which is common, would not be cancelled out.
 For this reason, the amplifiers employed in EEG recordings usually work through common-mode rejection
 - i.e., an amplifier ability to individuate the noise common to different signals and remove
@@ -192,7 +192,7 @@ it -, which unluckily decades as the impedance increases. Therefore, it is funda
 have a low impedance between the recording electrodes and the subject skin: this is achieved
 by enhancing their coupling via a conductive gel.\\
 Notice that referencing is a linear operation, thus selecting a good referencing scheme is
-crucial. There is no perfect referencing scheme, but it's very important to know where the reference electrodes
+crucial. There is no perfect referencing scheme, but it is very important to know where the reference electrodes
 are located. Usually, the configuration is either symmetrical or centered:
 \begin{itemize}
     \item \textbf{Symmetrical} means that if the reference is on one ear, then the whole field will be dependent
@@ -235,7 +235,7 @@ input - i.e., the stimulus - and the output - i.e., the evoked potentials - is o
 ERPs are based on the hypothesis that the brain activity is event-related, thus the activity
 observed after the stimulation is caused by the stimulus itself. As a consequence, everything
 not caused by the stimulation is not replicated across time and can be considered noise.\\
-Several trial of the same stimulation are recorded, each one containing a temporal mixture
+Several trials of the same stimulation are recorded, each one containing a temporal mixture
 of signal and noise: signal is assumed to be consistent across trials referred to the same
 stimulus. Thus, noise can be removed by averaging all the trials together. This can be done
 as noise is assumed to be uncorrelated - i.e., it has no statistical meaning, thus it is random -
@@ -245,7 +245,7 @@ and centered around zero.
     \includegraphics[scale=0.48]{12_7}
 \end{figure}
 In this way, the Event-Related Potential (ERP) is obtained: it exhibits both positive and negative
-peaks, while oscillating around zero. The time and amplitude of the peaks is usually linked
+peaks, while oscillating around zero. The time and amplitude of the peaks are usually linked
 to behavioural performances. For instance, the positive peak at \(300\,ms\) might be associated
 to the active visual perception of a stimulus.\\
 Thus, a correlation between peaks features, such as temporal displacement and amplitudes,
@@ -258,7 +258,7 @@ representation can be obtained by exploiting either the Windowed Fourier Transfo
 Wavelet Transform: in general the transform is applied to each trial and then the spectra
 are averaged, obtaining the so-called Event-Related Spectrum (ERS). It is then possible
 to remove the baseline activity of the brain from the joint time-frequency representation,
-producing a time-frequency representation exclusively for response to a perturbation
+producing a time-frequency representation exclusive for the response to a perturbation
 - i.e., the stimulus -, denominated \textbf{Event-Related Spectral Perturbation (ERSP)}, which is
 better described in the following pages.
 Notice that, for what has just been said, a time-frequency representation is less significant
@@ -286,15 +286,15 @@ recording sites during an ERP by looking at the active channels.
 \end{figure}
 \subsubsection{Baseline Normalization}
 The \textbf{baseline} is defined as the basal or spontaneous
-activity recorded by a channel before the occurring of a stimulus. In many cases it might
+activity recorded by a channel before the occurrence of a stimulus. In many cases it might
 be useful to compare the activity before - i.e., the baseline activity - and after - i.e., the
 evoked response - a stimulus to understand how the neural system is affected by it.\\
 In order to remove the baseline component from the evoked response, it has been suggested to
-perform the so called baseline normalization, consisting in removing the baseline contribution
+perform the so-called baseline normalization, consisting in removing the baseline contribution
 from the after-stimulus signal.\\
 There are two possible ways to normalize the activity:
 \begin{itemize}
-    \item obtain the activity, average across trials, and then subtract the baseline.
+    \item obtain the activity, average across trials, then subtract the baseline.
     \item normalize the activity for every single trial, and then perform the average.
           In this case, extra attention must be paid because the activity can be biased towards
           higher values.
@@ -330,7 +330,7 @@ The topic of ERPs filtering is still a very debated one, as a number of issues m
     \item \textbf{Blurring of temporal relations (violation of causality):} the response latency is
           crucial to infer the sequence of neural events or the anatomical stage at which they
           occur. Remember that filters always introduce a delay.
-    \item \textbf{Non-uniqueness of phenomenological descriptions:} they same event might be
+    \item \textbf{Non-uniqueness of phenomenological descriptions:} the same event might be
           described in inconsistent ways according to the nature of the performed analysis and
           this would be a noticeable obstacle in comparisons between different studies. Moreover,
           the same phenomenon can be reported several times in a redundant way, as it would be
