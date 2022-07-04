@@ -1,46 +1,46 @@
 \subsection{(Discrete) Fourier Transform}
 The (Discrete) Fourier Transform (DFT) is the simplest way of understanding, analyzing, and
 quantifying the range of frequencies that exists within a signal, such that the information
-carried by it can be decomposed in a series of harmonics.\\
+carried by it can be decomposed into a series of harmonics.\\
 However, there are some major problems by using this tool:
 \begin{itemize}
     \item A spectrum in the Fourier domain is obtained every time the signal in the time domain
           has a non-null component, even if there are no oscillations. Considering just the Power
           Spectral Density (PSD) of the signal, which describes how the amplitudes of the
           oscillations are distributed over the frequency domain, the DFT of a single pulse is a
-          uniform distribution (\textit{Fig. a}). Hence, in the time domain just one pulse is present, while in the
+          uniform distribution. Hence, in the time domain just one pulse is present, while in the
           frequency domain a certain amplitude is present on the whole domain. Therefore, the PSD
           could lead to the false conclusion that, since it is non-zero, then oscillations are
           present in time.
     \item \(1/f\)-like aperiodic activity (\textit{pink noise}), which is common in neural data,
           shows power across all frequencies, which decreases at higher frequencies. Despite the lack
           of periodic activity, narrowband filtering, which is realized on a sinusoidal basis, extracts
-          components that appear to be oscillatory when filtered into canonical band ranges (\textit{Fig. b and c}).
+          components that appear to be oscillatory when filtered into canonical band ranges.
           \begin{figure}[H]
               \includegraphics[scale=0.42]{11_1}
               \centering
           \end{figure}
-    \item Another aspect that is crucial is that using the periodogram (either the standard version
-          or the modified one by Welch), the signal is usually partitioned into different time windows of a
+    \item Another crucial aspect is that by using the periodogram (either the standard version
+          or the modified one by Welch) the signal is usually partitioned into different time windows of a
           given length in order to perform the Fast Fourier Transfrom (FFT) for each window, then averaging
           all of them. The time window length is defined at the beginning of the algorithm, then it runs across
           all the possible windows. If there is a signal that is constant in energy across time (such as a sinusoid),
           the duration of the window is not relevant. On the other hand, if the signal is very different from
           a sinusoid (as in the case of neuronal oscillations), the selected window acts as a low-pass filter:
-          for this reason there is not an optimal way to select the window length. Ideally, the best strategy
+          for this reason there is no optimal way to select the window length. Ideally, the best strategy
           is to have a time-window that is dependent on the frequency taken into account, but this is not possible
           in the Fourier Analysis.
 \end{itemize}
 \subsubsection{Frequency Bands}
-What can be done is to concentrate the analysis in the so called \textbf{frequency peaks}.
+What can be done is to focus the analysis around the so called \textbf{frequency peaks}.
 In general, the procedure is to take the spectrum and localize the frequency range where
 there is the maximum amplitude, as large increases are likely to have some sort of oscillations.
-Then the analysis can be focused on that specific region of the frequency spectrum.\\
+Then, the analysis can be focused on that specific region of the frequency spectrum.\\
 Since brain rhythms have a very neatly organized frequency distribution, the frequency
 bands corresponding to those specific brain regions can be also used to separate the signals
-and look at the activity. For instance, alpha peaks are considered a stable trait marker,
+and look at the activity. For instance, alpha peaks are considered a stable trait marker
 that can also be associated with some clinical disorders, displaying a slower frequency in
-attention-deficit hyperactivity disorder (ADHD).\\
+the presence of attention-deficit hyperactivity disorder (ADHD).\\
 However, attention must be paid when using these frequency ranges: even if the presence of
 oscillations is verified, the use of canonically defined frequency ranges may still fail
 to accurately reflect the data, as this may misestimate the power of an oscillation if the
@@ -60,7 +60,7 @@ The Fourier Transform decomposes the signal in a weighted sum of complex sinusoi
 Anyhow, if the signal is significantly non-sinusoidal, the neuronal oscillations are highly
 non-stationary. In this way, the Fourier Transform may not be the best tool to investigate
 the activity. Another possibility to characterize the activity properties is to look at the
-spectrum, to define the frequency band of interest, to filter the activity there, and then go
+spectrum, define the frequency band of interest, filter the activity there, and then go
 back to the time domain and quantify what is the distance that the oscillation has from the
 sinusoid. One possibility is to create a \textbf{time-resolved peak-through symmetry}
 (or asymmetry), understanding how much these peak-through distances are different from a pure sine.
@@ -153,25 +153,26 @@ By employing the Power Spectral Density, some issues are introduced:
 Is there a way to obtain a joint time-frequency representation?
 
 \subsection{Short-Time Fourier Transform}
-The \textbf{Short-Time Fourier Transform} (STFT) is one possibility to access the time-frequency decomposition.
-It consists in performing the Fourier Transform for smaller time-windows of a fixed length, and then looking
+The \textbf{Short-Time Fourier Transform} (STFT), often refferred to as Windowed Fourier Transform (WFT),
+is one possibility to access the time-frequency decomposition.
+It consists in performing the Fourier Transform for smaller time-windows of a fixed length, then looking
 at them as a 2D plot (frequency vs. time), where the third dimension - i.e., the amplitude - is given by a
 colormap. Instead of separating the signal in multiple time windows and then averaging across them, the window
-dimension is kept fixed and all the Fourier Transforms are aligned into time bins. The larger the time bin,
-the better the frequency resolution, but at the expense of a worse temporal resolution (for the
+dimension is kept fixed and all the Fourier Transforms are aligned into time bins. The larger the time bins,
+the better the frequency resolution, though at the expense of a worse temporal resolution (as a consequence of the
 Heisenberg Uncertainty Principle).
 \begin{figure}[H]
     \includegraphics[scale=0.45]{11_8}
     \centering
 \end{figure}
-The problem of this method is that it's still Fourier-based. What can be done is to repeat the procedure for
+The problem of this method is that it is still Fourier-based. What can be done is to repeat the procedure for
 more than one time window, adding another dimension. Anyway, this would increase the total computational cost
 and the full analysis will be very complicated.
 \subsubsection{Fourier Analysis Limitations}
 \begin{itemize}
     \item Fourier does not provide temporal information on discrete increase of amplitude of an oscillation
           (sine is always the same across time).
-    \item Fixed widths for time windows in STFT creates a problem in neuroscience, since signals need to be
+    \item Fixed widths for time windows in STFT represents a problem in neuroscience, since signals need to be
           stationary in order to be able to apply the Fourier theorem, but neural signals are non-stationary.
 \end{itemize}
 
@@ -187,7 +188,7 @@ frequencies, through a dot product or a convolution. The dot product can be inte
 Nonetheless, such an approach does not allow to separate time from frequency: a joint time-frequency
 representation cannot be obtained.
 \begin{figure}[H]
-    \includegraphics[scale=0.35]{11_9}
+    \includegraphics[scale=0.4]{11_9}
     \centering
 \end{figure}
 One possibility to access the time resolution would be to filter the EEG data through a narrow temporal window.
@@ -217,7 +218,7 @@ signal.
 \subsubsection{Real-Valued vs Complex Wavelets}
 The complex wavelet is not the only one that exists, but it is important for two reasons:
 \begin{enumerate}
-    \item If only real-valued wavelets are considered, if the two oscillations that need to be matched are not
+    \item If only real-valued wavelets are considered and the two oscillations that need to be matched are not
           aligned in phase, the dot product will be affected by it. Hence, complex wavelets are more
           complicated, but have the advantage that the phase is one of the parameters, thus they
           allow a more general representation, accounting for all possible shifts.
@@ -242,7 +243,7 @@ considered.
     \item \textbf{Maximum frequency:} limited by the Nyquist theorem.
 \end{itemize}
 About the frequency scale - i.e., how many and how spaced frequencies must be - there is no fixed optimal
-decision either. It is usually dictated by the visualization of the results and on whether slow or fast
+decision either. It is usually dictated by the visualization of the results and whether slow or fast
 oscillations are considered:
 \begin{itemize}
     \item \textbf{Faster rhythms:} require a logarithmic kind of representation (better visual resolution).
@@ -265,8 +266,8 @@ Uncertainty Principle applies here.
 The number of cycles is identified as the number of peaks inside the
 wavelet. The power spectrum of the different wavelets is again a Gaussian that is centered around 0 and both
 reach 0 at the same time, but the variance is different in the two cases: one has a smaller frequency
-resolution, while the other one is wider. The \(3\) cycles wavelet gives a better time resolution, while the
-frequency will be smoother in a wider region. For the \(7\) cycles wavelet, the frequency resolution is better, on
+resolution, while the other one is wider. The \(3\)-cycles wavelet gives a better time resolution, while the
+frequency will be smoother in a wider region. For the \(7\)-cycles wavelet, the frequency resolution is better, on
 the contrary the time resolution is worse.\\
 An optimal trade-off for neuroscience is in the range of \(5-7\) cycles to have accurate frequency and time
 resolutions.
